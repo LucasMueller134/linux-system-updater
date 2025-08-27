@@ -1,0 +1,1271 @@
+# RELATÓRIO FINAL - MÁQUINAS QUE PRECISAM ATUALIZAR
+# Gerado em: 21/08/2025 às 10:19:51
+# Total com pendências: 1263
+# Debian != 12: 1000 | Chrome < 139: 997 | Firefox < 115: 708
+#
+# IP | Hostname | Debian | Chrome | Firefox | Status
+==============================================================================================================
+
+192.168.7.73    | pmjsXXXXXX           | Debian 11          | 138.0.7204.183            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.7.81    | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.8.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.7.60    | pmjs157918           | Debian 11          | 138.0.7204.92             | 102.7.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.7.93    | pmjsXXXXXX           | Debian 11          | 133.0.6943.126            | 102.6.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.7.79    | pmjs010284           | Debian 11          | 133.0.6943.53             | 102.6.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.7.54    | pmjs158166           | Debian 11          | 137.0.7151.68             | 102.10.0esr     | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.7.52    | pmjsXXXXXX           | Debian 11          | 127.0.6533.88             | 115.5.0esr      | PRECISA ATUALIZAR: Chrome, Debian
+192.168.7.42    | edu3027              | Debian 12          | 138.0.7204.92             | 128.12.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.7.24    | pmjsXXXXXX           | Debian 11          | 130.0.6723.91             | 115.5.0esr      | PRECISA ATUALIZAR: Chrome, Debian
+192.168.7.76    | pmjs168776           | Debian 11          | 96.0.4664.45              | 102.3.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.7.105   | pmjsXXXXXX           | Debian 11          | 138.0.7204.168            | 128.13.0esr     | PRECISA ATUALIZAR: Chrome, Debian
+192.168.7.149   | edu169298            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.7.171   | pmjsXXXXXX           | Debian 11          | 132.0.6834.110            | 128.6.0esr      | PRECISA ATUALIZAR: Chrome, Debian
+192.168.7.208   | pmjsXXXXXX           | Debian 11          | 107.0.5304.87             | 102.4.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.7.218   | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 115.10.0esr     | PRECISA ATUALIZAR: Chrome, Debian
+192.168.8.149   | 091239               | Debian 12          | 138.0.7204.168            | 128.10.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.9.51    | pmjs103443           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.58    | pmjs103416           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.62    | pmjs102323           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.99    | pmjs103409           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.74    | pmjs103408           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.57    | pmjs103398           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.18    | pmjs103395           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.44    | pmjs103412           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.84    | pmjs103405           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.31    | pmjs103397           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.30    | pmjs102310           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.67    | pmjs102318           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.97    | pmjs102326           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.78    | pmjs102325           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.72    | pmjs103411           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.36    | pmjs103406           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.87    | pmjs103379           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.42    | pmjs103417           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.23    | pmjs103420           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.35    | pmjs102319           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.86    | pmjs102376           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.94    | pmjs103466           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.76    | pmjs99522            | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.95    | pmjs103391           | Debian 11          | 139.0.7258.138            | 115.15.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.29    | pmjs102302           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.79    | pmjs103441           | Debian 11          | 139.0.7258.138            | 128.13.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.68    | pmjs102388           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.91    | pmjs102317           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.27    | pmjs103394           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.96    | pmjs102320           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.71    | pmjs102387           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.46    | pmjs99504            | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.93    | pmjs99520            | Debian 12          | 135.0.7049.95             | 128.10.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.9.45    | pmjs100664           | Debian 11          | 139.0.7258.127            | 128.13.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.130   | s3226                | Debian 11          | 98.0.4758.102             | 78.14.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.9.112   | pmjs103404           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.104   | pmjs103482           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.101   | pmjs103484           | Debian 11          | 138.0.7204.157            | 128.12.0esr     | PRECISA ATUALIZAR: Chrome, Debian
+192.168.9.123   | pmjs071763           | Debian 11          | 94.0.4606.71              | 78.14.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.9.107   | pmjs103422           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.138   | pmjs99526            | Debian 11          | 94.0.4606.71              | 78.14.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.9.114   | pmjs102297           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.103   | pmjs102286           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.116   | pmjs102327           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.120   | pmjs102316           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.133   | pmjs103469           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.139   | pmjs103401           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.134   | pmjs102324           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.115   | pmjs103402           | Debian 11          | 139.0.7258.127            | 128.13.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.140   | pmjs103418           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.142   | pmjs99499            | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.153   | s3084                | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.117   | pmjs103962           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.155   | pmjs135979           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.159   | pmjs102377           | Debian 12          | 135.0.7049.52             | 128.14.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.9.148   | pmjs081864           | Debian 11          | 139.0.7258.138            | 128.13.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.160   | s3182                | Debian 12          | 129.0.6668.70             | 115.7.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.9.165   | pmjs103421           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.168   | pmjs103399           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.169   | pmjs102294           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.170   | pmjs103403           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.166   | pmjs102293           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.174   | pmjs102395           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.173   | pmjs102301           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.175   | pmjs102378           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.183   | pmjs99525            | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.184   | pmjs102296           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.191   | pmjs103442           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.190   | pmjs99501            | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.193   | pmjs102298           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.198   | pmjs102300           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.102   | S1543                | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.210   | pmjs103473           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.213   | pmjs99524            | Debian 11          | 103.0.5060.53             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.9.214   | pmjs102321           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.216   | pmjs102390           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.221   | pmjs102306           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.9.223   | pmjs102307           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.12.42   | pmjs156890           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.12.120  | pmjs156781           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.12.128  | pmjs155086           | Debian 11          | 102.0.5005.115            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.12.142  | pmjs155091           | Debian 12          | 126.0.6478.114            | 102.12.0esr     | PRECISA ATUALIZAR: Chrome, Firefox
+192.168.13.49   | pmjs156877           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.13.164  | pmjs143669           | Debian 11          | 139.0.7258.138            | 128.8.0esr      | PRECISA ATUALIZAR: Debian
+192.168.14.42   | pmjs145472           | Debian 11          | 112.0.5615.49             | 128.13.0esr     | PRECISA ATUALIZAR: Chrome, Debian
+192.168.14.32   | pmjs145471           | Debian 13          | 139.0.7258.138            | 128.13.0esr     | PRECISA ATUALIZAR: Debian
+192.168.14.142  | est3231              | Debian 11          | 101.0.4951.64             | 78.14.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.15.88   | pmjs136017           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.15.28   | pmjs102328           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.15.34   | pmjs102330           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.15.90   | pmjs135824           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.15.53   | pmjs136009           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.15.48   | pmjs135980           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.15.40   | pmjs136004           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.15.43   | pmjs135828           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.15.52   | pmjs135997           | Debian 11          | 139.0.7258.138            | 128.13.0esr     | PRECISA ATUALIZAR: Debian
+192.168.15.19   | senhastributacao     | Debian 11          | 109.0.5414.74             | 102.7.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.15.21   | pmjs136005           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.15.225  | pmjs102410           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.16.61   | pmjs135862           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.16.73   | pmjs156879           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.16.101  | pmjs156886           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.16.103  | pmjs135871           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.16.138  | pmjs136026           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.16.121  | pmjs112212           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.16.198  | pmjs136030           | Debian 10          | 124.0.6367.118            | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.18.30   | pmjs135821           | Debian 9           | 90.0.4430.93              | 78.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.18.29   | pmjs135811           | Debian 9           | 90.0.4430.93              | 78.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.18.81   | pmjs135815           | Debian 9           | 90.0.4430.93              | 78.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.18.38   | pmjs135820           | Debian 10          | 133.0.6943.126            | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.18.22   | pmjs135816           | Debian 10          | 124.0.6367.60             | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.18.55   | pmjs136018           | Debian 11          | 139.0.7258.127            | 128.13.0esr     | PRECISA ATUALIZAR: Debian
+192.168.21.60   | pmjs134567           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.21.31   | pmjs134577           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.21.26   | pmjs155456           | Debian 11          | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.21.32   | pmjs155457           | Debian 11          | 138.0.7204.168            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.21.20   | pmjs155459           | Debian 11          | 102.0.5005.115            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.21.39   | pmjs143671           | Debian 12          | 137.0.7151.103            | 128.10.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.21.33   | pmjs155455           | Debian 11          | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.21.212  | pmjs134569           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.21.204  | pmjs155461           | Debian 11          | 103.0.5060.53             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.21.205  | pmjs155464           | Debian 12          | 135.0.7049.84             | 128.9.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.21.226  | s2756                | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.22.31   | pmjs156882           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.22.38   | pmjs102295           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.22.33   | pmjs135915           | Debian 10          | 124.0.6367.118            | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.22.27   | pmjs112210           | Debian 12          | 133.0.6943.141            | 128.5.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.22.184  | pmjs135951           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.23.31   | s1858                | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.23.29   | pmjs127038           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.24.55   | pmjs135887           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.24.51   | pmjs135905           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.24.88   | pmjs135967           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.24.54   | pmjs135923           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.24.42   | pmjs135901           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.24.50   | pmjs135919           | Debian 11          | 121.0.6167.160            | 102.15.0esr     | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.24.31   | pmjs135941           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.24.106  | pmjs135908           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.24.113  | pmjs167813           | Debian 12          | 137.0.7151.68             | 128.10.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.24.109  | pmjs135940           | Debian 11          | 108.0.5359.98             | 102.5.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.24.189  | pmjs135944           | Debian 11          | 135.0.7049.84             | 128.14.0esr     | PRECISA ATUALIZAR: Chrome, Debian
+192.168.24.185  | pmjs135882           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.24.190  | est3441              | Debian 11          | 94.0.4606.71              | 78.14.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.25.66   | est3283              | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.25.98   | pmjs112203           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.25.43   | est3285              | Debian 11          | 101.0.4951.54             | 91.9.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.25.36   | est3286              | Debian 11          | 133.0.6943.98             | 128.7.0esr      | PRECISA ATUALIZAR: Chrome, Debian
+192.168.25.118  | est1839              | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.25.121  | est3333              | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.25.48   | est3291              | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.25.201  | est3255              | Debian 12          | 133.0.6943.126            | 128.5.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.25.209  | est1999              | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.30.110  | pmjs155450           | Debian 11          | 96.0.4664.45              | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.30.122  | pmjs155452           | Debian 11          | 96.0.4664.45              | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.30.163  | pmjs156865           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.30.160  | pmjs156868           | Debian 11          | 139.0.7258.138            | 128.13.0esr     | PRECISA ATUALIZAR: Debian
+192.168.30.175  | pmjs156869           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.30.200  | pmjs155453           | Debian 11          | 103.0.5060.134            | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.32.222  | pmjs100650           | Debian 11          | 100.0.4896.60             | 115.7.0esr      | PRECISA ATUALIZAR: Chrome, Debian
+192.168.32.227  | pmjs100614           | Debian 11          | 99.0.4844.74              | 115.13.0esr     | PRECISA ATUALIZAR: Chrome, Debian
+192.168.33.51   | pmjs103511           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.21   | pmjs103506           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.75   | pmjs103490           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.72   | pmjs103503           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.81   | pmjs103509           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.71   | pmjs103500           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.77   | pmjs103508           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.96   | pmjs103381           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.79   | pmjs103510           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.80   | pmjs103507           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.73   | pmjs103502           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.57   | pmjs102331           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.83   | pmjs103368           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.61   | pmjs103497           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.97   | pmjs103376           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.85   | pmjs103374           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.82   | pmjs103512           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.99   | pmjs103377           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.93   | pmjs103375           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.62   | pmjs103488           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.60   | pmjs103494           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.25   | pmjs103388           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.26   | pmjs102299           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.74   | pmjs103501           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.90   | pmjs103370           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.98   | pmjs103380           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.89   | pmjs103367           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.40   | s0047                | Debian 8           | 107.0.5304.121            | 68.9.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.33.68   | pmjs103504           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.100  | pmjs103387           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.38   | pmjs102287           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.53   | pmjs102313           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.67   | pmjs103505           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.94   | pmjs103378           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.30   | pmjs102385           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.65   | pmjs103495           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.86   | pmjs103369           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.91   | pmjs103372           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.76   | pmjs103489           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.87   | pmjs103373           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.19   | srvsenhapoliclinica  | Debian 10          | Chromium 10.1             | 143.0a1         | PRECISA ATUALIZAR: Chrome, Debian
+192.168.33.104  | pmjs103386           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.102  | pmjs103384           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.101  | pmjs102384           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.118  | pmjs103392           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.119  | pmjs103383           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.106  | pmjs102394           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.103  | est2023              | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.109  | pmjs102391           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.116  | pmjs102375           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.122  | pmjs102386           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.143  | pmjs103487           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.148  | pmjs102308           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.147  | pmjs102393           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.167  | pmjs102292           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.33.181  | pmjs102288           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.34.22   | s1623                | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.34.226  | pmjs100627           | Debian 11          | 103.0.5060.53             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.34.224  | pmjs100626           | Debian 11          | 99.0.4844.82              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.35.51   | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.35.57   | EDU158242            | Debian 12          | 138.0.7204.100            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.35.55   | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 91.13.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.35.50   | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.35.58   | EDU134720            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.35.156  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 91.13.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.35.205  | edu093827            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.36.44   | est4164              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.36.46   | est4017              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.36.21   | EDU4276              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.36.114  | edu4143              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.36.154  | eduxxxx              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.36.193  | edu169244            | Debian 12          | 137.0.7151.68             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.36.205  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.36.228  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.36.209  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.36.200  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.36.221  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.36.201  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.36.206  | edu246509            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.37.20   | est3812              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.37.21   | edu4235              | Debian 12          | 138.0.7204.168            | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.37.22   | EDU4447              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.37.25   | est2829              | Debian 9           | 101.0.4951.64             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.37.225  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.37.224  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.14.0esr     | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.37.227  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.39.184  | pmjs100685           | Debian 11          | 103.0.5060.53             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.39.208  | pmjs100691           | Debian 11          | 96.0.4664.45              | 102.3.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.39.207  | pmjs100692           | Debian 11          | 96.0.4664.45              | 102.3.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.40.26   | est3595              | Debian 10          | 103.0.5060.53             | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.40.85   | pmjs094167           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.40.24   | est3280              | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.40.197  | pmjs134389           | Debian 11          | 138.0.7204.168            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.41.210  | pmjs100381           | Debian 11          | 99.0.4844.51              | 91.6.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.54.30   | pmjs134080           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.54.34   | pmjs134079           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.54.31   | pmjs134078           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.54.26   | pmjs134076           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.54.27   | pmjs134073           | Debian 11          | 139.0.7258.138            | 128.13.0esr     | PRECISA ATUALIZAR: Debian
+192.168.54.22   | pmjs133994           | Debian 11          | 101.0.4951.54             | 91.8.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.54.109  | pmjs133991           | Debian 11          | 101.0.4951.54             | 91.8.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.54.147  | pmjs133996           | Debian 11          | 101.0.4951.54             | 91.9.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.54.201  | pmjs133995           | Debian 11          | 104.0.5112.79             | 91.9.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.54.195  | pmjs133992           | Debian 11          | 101.0.4951.54             | 91.8.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.54.206  | pmjs133993           | Debian 11          | 101.0.4951.54             | 91.8.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.59.222  | pmjs156853           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.59.226  | pmjs156852           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.61.25   | s3602                | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.61.219  | pmjs134419           | Debian 11          | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.61.216  | pmjs134420           | Debian 11          | 139.0.7258.66             | 128.13.0esr     | PRECISA ATUALIZAR: Debian
+192.168.66.34   | pmjs134562           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.66.150  | pmjs134553           | Debian 11          | 105.0.5195.102            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.66.152  | pmjs134442           | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.66.120  | pmjs112211           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.66.158  | pmjs134565           | Debian 11          | 96.0.4664.45              | 91.13.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.66.160  | pmjs134564           | Debian 11          | 96.0.4664.45              | 91.13.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.66.166  | pmjs134436           | Debian 11          | 134.0.6998.117            | 128.8.0esr      | PRECISA ATUALIZAR: Chrome, Debian
+192.168.66.165  | pmjs134434           | Debian 12          | 134.0.6998.88             | 91.9.0esr       | PRECISA ATUALIZAR: Chrome, Firefox
+192.168.66.167  | pmjs134560           | Debian 11          | 96.0.4664.45              | 91.13.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.66.164  | pmjs134437           | Debian 11          | 101.0.4951.64             | 91.9.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.66.178  | pmjs072162           | Debian 11          | 104.0.5112.79             | 78.14.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.66.175  | pmjs134433           | Debian 11          | 101.0.4951.64             | 91.9.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.66.192  | pmjs134554           | Debian 11          | 103.0.5060.114            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.66.209  | pmjs134566           | Debian 11          | 96.0.4664.45              | 91.13.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.66.203  | pmjs134552           | Debian 11          | 96.0.4664.45              | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.66.196  | est3245              | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.69.38   | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.69.24   | EDU169226            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.69.35   | EDU134770            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.69.41   | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.69.20   | edu3921              | Debian 12          | 138.0.7204.168            | 128.12.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.69.27   | pmjsXXXXXX           | Debian 11          | 138.0.7204.49             | 102.7.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.71.36   | pmjs100670           | Debian 11          | 101.0.4951.41             | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.71.158  | pmjs100671           | Debian 11          | 101.0.4951.41             | 91.8.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.71.224  | pmjs100668           | Debian 11          | 101.0.4951.41             | 91.8.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.71.226  | pmjs100666           | Debian 11          | 101.0.4951.41             | 91.8.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.72.226  | pmjs156854           | Debian 11          | 111.0.5563.64             | 128.14.0esr     | PRECISA ATUALIZAR: Chrome, Debian
+192.168.72.218  | pmjs156864           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.72.221  | pmjs156848           | Debian 11          | 119.0.6045.159            | 91.13.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.73.31   | pmjs100630           | Debian 11          | 99.0.4844.84              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.73.32   | pmjs100629           | Debian 11          | 99.0.4844.84              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.73.221  | pmjs100634           | Debian 11          | 114.0.5735.90             | 102.11.0esr     | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.73.215  | pmjs100631           | Debian 11          | 96.0.4664.45              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.74.219  | pmjs134426           | Debian 11          | 96.0.4664.45              | 91.9.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.74.214  | pmjs134428           | Debian 11          | 126.0.6478.126            | 91.9.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.74.227  | pmjs134427           | Debian 11          | 101.0.4951.64             | 91.9.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.75.24   | EDU169210            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.75.26   | EDU169209            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.75.25   | est134614            | Debian 9           | 91.0.4472.114             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.75.76   | est134623            | Debian 9           | 107.0.5304.121            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.75.32   | edu2357              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.75.29   | edu3582              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.75.42   | ed134753             | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.75.34   | est4103              | Debian 9           | 105.0.5195.125            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.75.51   | est3102              | Debian 9           | 105.0.5195.125            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.75.20   | 082407               | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.75.38   | est2362              | Debian 9           | 105.0.5195.125            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.75.44   | est2360              | Debian 9           | 105.0.5195.125            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.75.21   | edu2320              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.75.109  | est4040              | Debian 9           | 100.0.4896.127            | 78.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.75.116  | edu140173            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.75.120  | est134620            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.75.121  | EDU4290              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.75.124  | est34613             | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.75.129  | est134621            | Debian 9           | 91.0.4472.114             | 60.7.0          | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.75.219  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.75.207  | EDU134615            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.75.226  | pmjsXXXXXX           | Debian 11          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome, Debian
+192.168.76.51   | est158107            | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.76.24   | edu169260            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.76.46   | pmjsXXXXXX           | Debian 11          | 119.0.6045.123            | 115.4.0esr      | PRECISA ATUALIZAR: Chrome, Debian
+192.168.76.21   | EDU4332              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.76.33   | EDU110173            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.76.28   | edu140174            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.76.123  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.76.168  | estbiblioteca        | Debian 9           | 105.0.5195.125            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.76.194  | pmjsXXXXXX           | Debian 11          | 103.0.5060.53             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.76.198  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.76.208  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.76.180  | pmjsXXXXXX           | Debian 11          | 103.0.5060.53             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.76.206  | pmjsXXXXXX           | Debian 11          | 103.0.5060.53             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.76.202  | pmjsXXXXXX           | Debian 11          | 103.0.5060.53             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.76.215  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.76.225  | pmjsXXXXXX           | Debian 11          | 103.0.5060.53             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.76.211  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.78.20   | est134725            | Debian 9           | 91.0.4472.114             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.78.225  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.78.221  | pmjsXXXXXX           | Debian 11          | 130.0.6723.116            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.79.25   | EDU169299            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.79.201  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.79.207  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.79.202  | EDU158293            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.79.205  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.5.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.80.30   | edu244571            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.80.28   | est134733            | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.80.26   | EDU4450              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.80.217  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.80.218  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.81.21   | EDU158263            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.81.51   | est3402              | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.81.216  | edu158262            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.81.209  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.4.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.81.208  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.4.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.82.27   | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.10.0esr     | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.82.25   | edu134741            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.82.222  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.82.218  | edu158316            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.83.20   | est4189              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.83.21   | EDU169308            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.83.220  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.14.0esr     | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.85.38   | edu169250            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.85.33   | est134633            | Debian 9           | 107.0.5304.121            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.85.31   | est134631            | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.85.37   | edu169251            | Debian 12          | 138.0.7204.100            | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.85.22   | EDU4415              | Debian 12          | 135.0.7049.52             | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.85.41   | EDU4304              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.85.27   | est134635            | Debian 9           | 91.0.4472.114             | 68.5.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.85.24   | edu134679            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.86.23   | EDU169220            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.86.30   | edu169232            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.86.26   | edu169233            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.86.27   | EDU169228            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.86.31   | edu169239            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.86.39   | edu169240            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.86.29   | edu169238            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.86.22   | eduxxxx              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.86.214  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.86.217  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.86.216  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | Não instalado   | PRECISA ATUALIZAR: Chrome, Debian
+192.168.87.57   | est4217              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.87.30   | est140163            | Debian 9           | 103.0.5060.53             | 68.6.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.87.40   | ESTDAT0001           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.87.39   | est134678            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.87.47   | est4043              | Debian 9           | 101.0.4951.54             | 78.14.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.87.25   | edu244822            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.87.26   | EDU169213            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.87.32   | EDU155116            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.87.63   | EDU155125            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.87.22   | EDU169212            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.87.37   | est2416              | Debian 9           | 101.0.4951.54             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.87.24   | EDU169211            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.87.36   | est2286              | Debian 9           | 101.0.4951.54             | 60.8.0          | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.87.203  | pmjsXXXXXX           | Debian 11          | 133.0.6943.141            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.87.222  | pmjsXXXXXX           | Debian 11          | 139.0.7258.66             | 78.15.0esr      | PRECISA ATUALIZAR: Debian, Firefox
+192.168.87.215  | pmjsXXXXXX           | Debian 11          | 130.0.6723.91             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.87.228  | pmjsXXXXXX           | Debian 11          | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.87.213  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.87.216  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.87.214  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.87.226  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.87.211  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.87.209  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.87.207  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.87.212  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.88.22   | est3607              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.88.26   | est3526              | Debian 9           | 101.0.4951.54             | 91.8.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.88.33   | est4184              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.88.28   | est3796              | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.88.29   | est140160            | Debian 9           | 102.0.5005.61             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.88.25   | est134675            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.88.27   | est4015              | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.88.32   | EDU134676            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.88.218  | pmjsXXXXXX           | Debian 11          | 128.0.6613.113            | 102.8.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.89.26   | est134726            | Debian 9           | 102.0.5005.61             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.89.25   | est2664              | Debian 9           | 91.0.4472.114             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.89.32   | est140166            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.89.28   | EDU169311            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.89.24   | EDU134767            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.89.33   | EDU4448              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.89.216  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.89.217  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.89.215  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.89.229  | pmjsXXXXXX           | Debian 11          | 134.0.6998.88             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.89.210  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.89.213  | pmjsXXXXXX           | Debian 11          | 134.0.6998.88             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.89.209  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.89.208  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.89.212  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.89.211  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.90.86   | est134702            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.90.27   | est134705            | Debian 9           | 101.0.4951.54             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.90.51   | EDU169230            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.90.57   | edu169273            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.90.25   | est134703            | Debian 9           | 101.0.4951.54             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.90.53   | EDU169229            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.90.49   | EDU169224            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.90.61   | est2994              | Debian 9           | 104.0.5112.79             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.90.35   | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.8.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.90.26   | est134707            | Debian 9           | 101.0.4951.54             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.90.84   | est134704            | Debian 9           | 101.0.4951.54             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.90.37   | edu134701            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.90.45   | EDU4407              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.90.24   | est2249              | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.90.56   | est3519              | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.90.28   | EDU4270              | Debian 12          | 128.0.6613.119            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.90.36   | EDU4268              | Debian 12          | 128.0.6613.119            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.90.209  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.91.24   | pmjs134418           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.91.212  | pmjs134416           | Debian 11          | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.91.208  | pmjs14351            | Debian 11          | 135.0.7049.114            | 128.9.0esr      | PRECISA ATUALIZAR: Chrome, Debian
+192.168.92.54   | pmjs100661           | Debian 11          | 100.0.4896.60             | 102.9.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.92.28   | pmjs103458           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.92.57   | pmjs103454           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.92.52   | pmjs103453           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.92.63   | pmjs99497            | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.92.79   | pmjs103457           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.92.56   | pmjs103459           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.92.17   | s0060                | Debian 11          | Não instalado             | 102.7.0esr      | PRECISA ATUALIZAR: Debian, Firefox
+192.168.92.105  | pmjs100660           | Debian 11          | 100.0.4896.60             | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.92.180  | pmjs100663           | Debian 11          | 100.0.4896.60             | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.93.214  | pmjs100656           | Debian 11          | 100.0.4896.60             | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.93.218  | pmjs100653           | Debian 11          | 100.0.4896.60             | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.93.212  | pmjs100654           | Debian 11          | 100.0.4896.60             | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.94.225  | pmjs100708           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.94.227  | pmjs100705           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.94.226  | pmjs100706           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.94.223  | pmjs100707           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.95.227  | pmjs100644           | Debian 11          | 100.0.4896.60             | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.96.23   | pmjs100375           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.96.222  | pmjs100376           | Debian 11          | 98.0.4758.102             | 91.6.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.96.220  | pmjs100378           | Debian 11          | 98.0.4758.102             | 91.6.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.96.218  | pmjs100380           | Debian 11          | 129.0.6668.70             | 115.14.0esr     | PRECISA ATUALIZAR: Chrome, Debian
+192.168.96.228  | pmjs100377           | Debian 11          | 98.0.4758.102             | 91.6.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.98.21   | est134729            | Debian 9           | 102.0.5005.61             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.98.189  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.98.194  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.98.215  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.98.221  | pmjsXXXXXX           | Debian 11          | 128.0.6613.119            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.98.212  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.98.223  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.98.218  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.98.220  | pmjsXXXXXX           | Debian 11          | 133.0.6943.126            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.98.198  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.98.217  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.99.23   | est134574            | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.99.56   | est082423            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.99.32   | est134580            | Debian 9           | 102.0.5005.61             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.99.29   | edu169238            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.99.25   | est140153            | Debian 9           | 101.0.4951.54             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.99.42   | est2860              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.99.34   | edu169276            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.99.83   | est134575            | Debian 9           | 101.0.4951.54             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.99.80   | est134583            | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.99.36   | edu169272            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.99.43   | est134576            | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.99.48   | 169235               | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.99.35   | edu169234            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.99.26   | EDU169314            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.99.44   | est134591            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.99.40   | est134590            | Debian 9           | 91.0.4472.114             | 60.4.0          | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.99.57   | est140170            | Debian 9           | 101.0.4951.54             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.99.95   | EDU4306              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.99.39   | est4020              | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.99.92   | EDU4292              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.99.100  | edu158279            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.99.41   | est140439            | Debian 11          | 102.0.5005.115            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.99.96   | EDU4359              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.99.27   | EDU134585            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.99.59   | edu4481              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.99.182  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.99.169  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.99.206  | pmjsXXXXXX           | Debian 11          | 129.0.6668.100            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.101.195 | pmjs100695           | Debian 11          | 129.0.6668.100            | 128.3.1esr      | PRECISA ATUALIZAR: Chrome, Debian
+192.168.101.221 | pmjs100686           | Debian 11          | 96.0.4664.45              | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.101.220 | pmjs100694           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.101.223 | pmjs100696           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.102.226 | pmjs100576           | Debian 11          | 99.0.4844.51              | 91.6.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.102.192 | pmjs100574           | Debian 11          | 99.0.4844.51              | 91.6.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.102.229 | pmjs100579           | Debian 11          | 99.0.4844.51              | 91.6.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.102.223 | pmjs100577           | Debian 11          | 99.0.4844.51              | 91.6.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.103.21  | pmjs135958           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.104.23  | est134761            | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.104.22  | est2713              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.104.182 | est112386            | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.104.218 | pmjsXXXXXX           | Debian 11          | 129.0.6668.89             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.104.223 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.104.221 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.3.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.106.29  | pmjs100594           | Debian 11          | 99.0.4844.51              | 91.6.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.106.99  | pmjs103393           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.106.160 | pmjs100593           | Debian 11          | 99.0.4844.51              | 91.6.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.106.178 | pmjs100586           | Debian 11          | 99.0.4844.51              | 91.6.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.106.182 | pmjs100588           | Debian 11          | 99.0.4844.51              | 91.6.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.106.175 | pmjs100587           | Debian 11          | 99.0.4844.51              | 91.6.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.106.211 | pmjs100585           | Debian 11          | 99.0.4844.51              | 91.6.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.106.193 | pmjs100592           | Debian 11          | 99.0.4844.51              | 91.6.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.106.205 | pmjs100591           | Debian 11          | 99.0.4844.51              | 91.6.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.106.220 | pmjs10584            | Debian 11          | 99.0.4844.51              | 91.6.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.106.222 | pmjs100568           | Debian 11          | 99.0.4844.51              | 91.6.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.106.225 | pmjs100583           | Debian 11          | 99.0.4844.51              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.107.39  | pmjs156839           | Debian 11          | 102.0.5005.115            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.107.75  | pmjs156843           | Debian 11          | 112.0.5615.165            | 102.10.0esr     | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.107.98  | pmjs156837           | Debian 12          | 135.0.7049.95             | 128.9.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.107.95  | pmjs156834           | Debian 11          | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.107.123 | pmjs156860           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.107.129 | pmjs156859           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.107.128 | pmjs156855           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.107.116 | pmjs156845           | Debian 11          | 103.0.5060.53             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.107.176 | pmjs156841           | Debian 11          | 102.0.5005.115            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.108.28  | EDU157871            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.108.20  | EDU157879            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.108.29  | est4114              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.108.181 | pmjsXXXXXX           | Debian 11          | 128.0.6613.84             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.108.214 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.108.197 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.108.180 | pmjsXXXXXX           | Debian 11          | 128.0.6613.84             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.108.219 | pmjsXXXXXX           | Debian 11          | 128.0.6613.84             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.108.208 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.108.224 | pmjsXXXXXX           | Debian 11          | 128.0.6613.84             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.109.220 | pmjs100649           | Debian 11          | 100.0.4896.60             | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.109.213 | pmjs100648           | Debian 11          | 100.0.4896.60             | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.110.32  | pmjs100374           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.111.214 | pmjs100621           | Debian 11          | 99.0.4844.82              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.111.224 | pmjs100619           | Debian 11          | 99.0.4844.82              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.112.226 | pmjs100714           | Debian 11          | 110.0.5481.177            | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.112.222 | pmjs100718           | Debian 11          | 99.0.4844.74              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.112.219 | pmjs100717           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.112.221 | pmjs100715           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.112.220 | pmjs100716           | Debian 11          | 99.0.4844.74              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.112.223 | pmjs100719           | Debian 11          | 99.0.4844.74              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.113.34  | est3017              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.113.24  | est134691            | Debian 9           | 91.0.4472.114             | 60.4.0          | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.113.40  | est134695            | Debian 9           | 91.0.4472.114             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.113.22  | est134690            | Debian 9           | 91.0.4472.114             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.113.70  | est4065              | Debian 9           | 107.0.5304.121            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.113.30  | EDU4416              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.113.26  | EDU4257              | Debian 12          | 128.0.6613.119            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.113.27  | est134687            | Debian 9           | 91.0.4472.114             | 60.4.0          | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.113.48  | edu4264              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.113.44  | est134689            | Debian 9           | 91.0.4472.114             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.113.25  | edu3211              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.113.74  | edu3840              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.113.51  | edu2524              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.113.28  | est2625              | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.113.39  | est2029              | Debian 9           | 107.0.5304.121            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.113.21  | est2203              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.113.61  | EDU134696            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.113.38  | EDU2259              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.113.108 | est4014              | Debian 9           | 107.0.5304.121            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.113.115 | est3392              | Debian 9           | 102.0.5005.61             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.113.23  | EDU4330              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.113.45  | est3021              | Debian 12          | 134.0.6998.88             | 128.5.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.113.184 | est3912              | Debian 9           | 101.0.4951.54             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.113.204 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.113.205 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.114.225 | pmjs100598           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.114.223 | pmjs100596           | Debian 11          | 99.0.4844.82              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.114.220 | pmjs100599           | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.114.219 | pmjs100595           | Debian 11          | 99.0.4844.82              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.115.25  | pmjs103462           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.115.98  | pmjs103461           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.117.201 | pmjs100709           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.117.205 | pmjs100711           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.118.26  | s1016                | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.118.224 | pmjs134424           | Debian 11          | 102.0.5005.61             | 91.9.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.118.225 | pmjs134425           | Debian 11          | 137.0.7151.103            | 128.11.0esr     | PRECISA ATUALIZAR: Chrome, Debian
+192.168.118.220 | pmjs134414           | Debian 11          | 102.0.5005.61             | 91.9.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.119.27  | est3648              | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.119.21  | EST3646              | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.119.36  | EDU4160              | Debian 12          | 134.0.6998.88             | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.119.23  | EDU4170              | Debian 12          | 134.0.6998.88             | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.119.29  | edu2812              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.119.214 | pmjsXXXXXX           | Debian 11          | 134.0.6998.88             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.119.210 | pmjsXXXXXX           | Debian 11          | 134.0.6998.88             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.119.226 | est2244              | Debian 9           | 107.0.5304.121            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.119.221 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.119.220 | pmjsXXXXXX           | Debian 11          | 134.0.6998.88             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.119.225 | pmjsXXXXXX           | Debian 11          | 134.0.6998.88             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.120.21  | pmjs100684           | Debian 11          | 102.0.5005.61             | 91.9.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.30  | est4002              | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.28  | est3136              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.22  | est134628            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.25  | est134629            | Debian 9           | 101.0.4951.41             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.24  | EDU3920              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.121.66  | est134625            | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.102 | est134711            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.106 | est134626            | Debian 9           | 91.0.4472.114             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.111 | EDU4409              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.121.194 | pmjsXXXXXX           | Debian 11          | 133.0.6943.141            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.200 | pmjsXXXXXX           | Debian 11          | 133.0.6943.141            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.180 | est3894              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.191 | est134740            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.177 | pmjsXXXXXX           | Debian 11          | 101.0.4951.41             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.198 | pmjsXXXXXX           | Debian 11          | 133.0.6943.141            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.195 | pmjsXXXXXX           | Debian 11          | 101.0.4951.41             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.201 | pmjsXXXXXX           | Debian 11          | 133.0.6943.141            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.205 | est134627            | Debian 9           | 91.0.4472.114             | 60.4.0          | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.221 | pmjsXXXXXX           | Debian 11          | 134.0.6998.88             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.220 | pmjsXXXXXX           | Debian 11          | 133.0.6943.141            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.210 | pmjsXXXXXX           | Debian 11          | 133.0.6943.141            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.121.209 | pmjsXXXXXX           | Debian 11          | 133.0.6943.141            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.122.26  | EDU169300            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.122.22  | eduxxxx              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.122.20  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.122.21  | edu4438              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.122.28  | EDU2538              | Debian 12          | 128.0.6613.119            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.122.23  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.122.208 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.122.199 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.122.200 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.3.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.122.196 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.3.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.123.22  | est4111              | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.123.223 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.123.224 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.124.23  | pmjs100683           | Debian 11          | 102.0.5005.61             | 91.9.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.124.24  | pmjs100674           | Debian 11          | 101.0.4951.64             | 91.9.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.124.22  | pmjs100675           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.124.219 | pmjs100676           | Debian 11          | 101.0.4951.64             | 91.9.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.125.36  | est0000              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.125.28  | est3726              | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.125.30  | edu169246            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.125.23  | est3819              | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.125.26  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.8.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.125.27  | EDU158028            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.125.35  | est140143            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.125.41  | EDUXXXX              | Debian 12          | 128.0.6613.113            | 115.14.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.125.24  | edu3828              | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.125.37  | edu2051              | Debian 9           | 102.0.5005.61             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.125.40  | EDUXXXX              | Debian 12          | 128.0.6613.113            | 115.14.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.125.203 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.125.200 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.125.201 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.125.220 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.125.217 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.8.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.125.218 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.126.21  | est134763            | Debian 9           | 90.0.4430.93              | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.126.25  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.4.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.126.23  | EDU157907            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.126.20  | EDUXXXX              | Debian 12          | 128.0.6613.113            | 115.14.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.126.199 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.126.204 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.126.209 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.126.203 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.126.207 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.126.202 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.4.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.126.193 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.126.211 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 128.12.0esr     | PRECISA ATUALIZAR: Chrome, Debian
+192.168.126.197 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.4.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.126.195 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.5.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.127.24  | est134756            | Debian 9           | 91.0.4472.114             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.127.28  | EDU169301            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.127.223 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.127.221 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.128.30  | est3587              | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.128.26  | edu4200              | Debian 12          | 135.0.7049.84             | 128.9.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.128.22  | est134595            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.128.33  | est3864              | Debian 9           | 102.0.5005.61             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.128.24  | est140145            | Debian 9           | 105.0.5195.125            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.128.32  | 169254               | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.128.36  | est4025              | Debian 9           | 105.0.5195.125            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.128.23  | EDU134597            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.128.34  | edu246640            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.128.25  | EDU110185            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.128.213 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.129.148 | pmjs135034           | Debian 11          | 135.0.7049.84             | 128.9.0esr      | PRECISA ATUALIZAR: Chrome, Debian
+192.168.129.146 | pmjs082241           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.129.168 | pmjs134455           | Debian 11          | 100.0.4896.127            | 91.8.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.129.187 | est3091              | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.129.217 | pmjs134288           | Debian 11          | 108.0.5359.98             | 102.5.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.129.207 | pmjs134571           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.130.21  | est155585            | Debian 11          | 103.0.5060.114            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.130.23  | est140423            | Debian 11          | 102.0.5005.115            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.130.27  | est134731            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.130.22  | est3512              | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.130.24  | EDU140159            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.130.106 | est0000              | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.130.153 | pmjsXXXXXX           | Debian 11          | 101.0.4951.41             | 91.6.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.130.144 | EDU4460              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.130.163 | pmjsXXXXXX           | Debian 11          | 101.0.4951.41             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.130.165 | est2304              | Debian 9           | 101.0.4951.41             | 68.8.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.130.171 | est093452            | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.130.183 | pmjsXXXXXX           | Debian 11          | 101.0.4951.41             | 91.6.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.130.195 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.130.218 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.130.203 | pmjsXXXXXX           | Debian 11          | 101.0.4951.41             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.130.214 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.130.208 | pmjsXXXXXX           | Debian 11          | 101.0.4951.41             | 91.6.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.130.224 | est2467              | Debian 9           | 107.0.5304.121            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.131.28  | pmjs103968           | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.131.222 | pmjs100389           | Debian 12          | 134.0.6998.117            | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.131.223 | pmjs100388           | Debian 11          | 99.0.4844.51              | 91.6.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.131.225 | pmjs100386           | Debian 12          | 134.0.6998.117            | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.131.227 | pmjs100384           | Debian 11          | 127.0.6533.119            | 115.7.0esr      | PRECISA ATUALIZAR: Chrome, Debian
+192.168.131.224 | pmjs100387           | Debian 12          | 122.0.6261.128            | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.131.214 | pmjs100390           | Debian 11          | 99.0.4844.51              | 115.14.0esr     | PRECISA ATUALIZAR: Chrome, Debian
+192.168.133.98  | pmjs100606           | Debian 11          | 99.0.4844.51              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.133.95  | pmjs100604           | Debian 11          | 99.0.4844.51              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.133.223 | pmjs100608           | Debian 11          | 99.0.4844.51              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.133.206 | pmjs100601           | Debian 11          | 99.0.4844.51              | 115.15.0esr     | PRECISA ATUALIZAR: Chrome, Debian
+192.168.133.221 | pmjs100602           | Debian 11          | 99.0.4844.51              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.133.225 | pmjs100603           | Debian 11          | 99.0.4844.51              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.134.21  | est134717            | Debian 9           | 107.0.5304.121            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.134.34  | est134760            | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.134.30  | edu241864            | Debian 12          | 135.0.7049.84             | 128.9.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.134.27  | eduxxxx              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.134.32  | eduxxxx              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.134.214 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.134.212 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.134.213 | pmjsXXXXXX           | Debian 11          | 137.0.7151.103            | 102.7.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.134.211 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.134.209 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.135.24  | pmjs103963           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.135.22  | pmjs100640           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.135.212 | pmjs100641           | Debian 11          | 116.0.5845.179            | 102.15.0esr     | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.135.218 | pmjs100643           | Debian 11          | 104.0.5112.79             | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.135.203 | pmjs100642           | Debian 11          | 99.0.4844.84              | 102.6.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.136.31  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.136.38  | eduu4492             | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.136.39  | edu4191              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.136.26  | edu188031            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.136.29  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.136.36  | edu3394              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.136.222 | EDU169206            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.136.214 | EDU4364              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.137.29  | st2692               | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.137.24  | est3404              | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.137.218 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.137.222 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.137.191 | est134744            | Debian 9           | 91.0.4472.114             | 60.4.0          | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.137.219 | pmjsXXXXXX           | Debian 11          | 131.0.6778.69             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.137.220 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.8.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.29  | edu4249              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.23  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.8.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.27  | EDU4284              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.138.21  | edu4470              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.138.80  | EDU116683            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.138.24  | EDU140164            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.138.56  | edu4054              | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.121 | est3807              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.169 | est4121              | Debian 9           | 107.0.5304.121            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.166 | pmjsXXXXXX           | Debian 11          | 100.0.4896.127            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.175 | pmjsXXXXXX           | Debian 11          | 103.0.5060.53             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.182 | pmjsXXXXXX           | Debian 11          | 100.0.4896.127            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.178 | pmjsXXXXXX           | Debian 11          | 100.0.4896.127            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.189 | pmjsXXXXXX           | Debian 11          | 100.0.4896.127            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.187 | pmjsXXXXXX           | Debian 11          | 100.0.4896.127            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.200 | pmjsXXXXXX           | Debian 11          | 100.0.4896.127            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.20  | EDU4423              | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.138.211 | pmjsXXXXXX           | Debian 11          | 100.0.4896.127            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.207 | est155144            | Debian 11          | 94.0.4606.71              | 78.14.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.214 | pmjsXXXXXX           | Debian 11          | 134.0.6998.165            | 91.6.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.210 | pmjsXXXXXX           | Debian 11          | 100.0.4896.127            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.138.224 | pmjsXXXXXX           | Debian 11          | 110.0.5481.177            | 102.8.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.139.31  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.8.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.139.25  | est140168            | Debian 9           | 103.0.5060.53             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.139.33  | edu169245            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.139.24  | est2984              | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.139.39  | edu169243            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.139.30  | pmjsXXXXXX           | Debian 11          | 129.0.6668.89             | 102.8.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.139.40  | eduxxxx              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.139.34  | EDU158091            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.139.28  | EDU158087            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.139.29  | EDU158086            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.139.190 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.139.194 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.139.217 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.139.219 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.139.203 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.139.214 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.139.199 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.139.215 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.139.223 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.139.224 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.139.220 | pmjsXXXXXX           | Debian 11          | 107.0.5304.87             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.140.21  | EDU4286              | Debian 12          | 130.0.6723.58             | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.140.22  | EDU4436              | Debian 12          | 133.0.6943.141            | 128.7.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.140.203 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.140.221 | pmjsXXXXXX           | Debian 11          | 135.0.7049.84             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.140.211 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.140.222 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.3.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.140.212 | pmjsXXXXX            | Debian 12          | 135.0.7049.84             | 128.9.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.140.220 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.3.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.141.27  | pmjs102414           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.141.26  | pmjs102413           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.141.174 | s0835                | Debian 11          | 94.0.4606.71              | 78.14.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.141.205 | pmjs102428           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.141.197 | pmjs102422           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.141.208 | pmjs102417           | Debian 11          | 139.0.7258.127            | 128.13.0esr     | PRECISA ATUALIZAR: Debian
+192.168.141.215 | pmjs102427           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.141.222 | pmjs102426           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.141.207 | pmjs102411           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.141.212 | pmjs102412           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.141.219 | pmjs102421           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.141.201 | pmjs100657           | Debian 11          | 100.0.4896.60             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.141.196 | pmjs100636           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.141.227 | pmjs100713           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.142.20  | EDU158251            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.142.222 | pmjsXXXXXX           | Debian 11          | 133.0.6943.53             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.142.219 | pmjsXXXXXX           | Debian 11          | 109.0.5414.119            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.142.224 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.142.216 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.142.226 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.142.227 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.143.21  | est134750            | Debian 9           | 101.0.4951.64             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.143.26  | edu169247            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.143.25  | edu169248            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.143.22  | edu169249            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.143.205 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.5.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.143.207 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.143.211 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.143.216 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.144.77  | pmjs116011           | Debian 10          | 86.0.4240.183             | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.144.224 | pmjs156861           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.145.68  | est4063              | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.145.23  | pmjsXXXXXX           | Debian 11          | 129.0.6668.70             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.145.65  | EDU158236            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.145.209 | pmjsXXXXXX           | Debian 11          | 127.0.6533.88             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.145.222 | pmjsXXXXXX           | Debian 11          | 139.0.7258.66             | 78.15.0esr      | PRECISA ATUALIZAR: Debian, Firefox
+192.168.145.215 | pmjsXXXXXX           | Debian 11          | 128.0.6613.84             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.145.213 | pmjsXXXXXX           | Debian 11          | 129.0.6668.70             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.147.22  | pmjs100679           | Debian 11          | 101.0.4951.64             | 91.9.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.147.214 | pmjs100677           | Debian 11          | 101.0.4951.64             | 102.14.0esr     | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.150.21  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.150.36  | EDU169303            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.150.38  | EDU169305            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.150.35  | EDU169304            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.150.22  | edu4411              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.150.223 | pmjsXXXXXX           | Debian 11          | 133.0.6943.53             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.151.230 | pmjs134568           | Debian 11          | 121.0.6167.139            | 128.14.0esr     | PRECISA ATUALIZAR: Chrome, Debian
+192.168.151.227 | pmjs134459           | Debian 11          | 127.0.6533.119            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.151.229 | pmjs134460           | Debian 11          | 101.0.4951.41             | 91.8.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.151.199 | pmjs134461           | Debian 11          | 127.0.6533.119            | 91.8.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.151.195 | est3268              | Debian 11          | 125.0.6422.60             | 115.11.0esr     | PRECISA ATUALIZAR: Chrome, Debian
+192.168.152.24  | est158114            | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.152.61  | pmjsXXXXXX           | Debian 11          | 135.0.7049.84             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.152.50  | est3912              | Debian 9           | 107.0.5304.87             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.152.62  | edu169257            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.152.48  | edu169258            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.152.55  | edu169252            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.152.22  | pmjsXXXXXX           | Debian 11          | 135.0.7049.84             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.152.26  | edu158132            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.152.21  | EDU134586            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.152.51  | EDU4181              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.152.52  | EDU158121            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.152.30  | edu238416            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.152.29  | edu140150            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.152.54  | edu3913              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.152.36  | eduxxxx              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.152.56  | edu4483              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.152.23  | est68418             | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.152.25  | est3928              | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.152.32  | pmjsXXXXXX           | Debian 11          | 107.0.5304.87             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.152.150 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.152.149 | pmjsXXXXXX           | Debian 11          | 135.0.7049.84             | 102.7.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.152.156 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.152.158 | pmjsXXXXXX           | Debian 11          | 135.0.7049.84             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.152.176 | pmjsXXXXXX           | Debian 11          | 135.0.7049.84             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.152.162 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.152.181 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.153.27  | edu169271            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.153.23  | edu169290            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.153.26  | edu169284            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.153.25  | edu169287            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.153.22  | edu169286            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.153.28  | edu169285            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.153.24  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.5.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.154.64  | est134659            | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.154.57  | est4057              | Debian 9           | 107.0.5304.121            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.154.26  | est134658            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.154.41  | est134664            | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.154.33  | est134669            | Debian 9           | 101.0.4951.54             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.154.22  | EDU169207            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.154.23  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.154.25  | EDU4377              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.154.36  | edu4477              | Debian 12          | 135.0.7049.84             | 128.9.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.154.52  | est134661            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.154.24  | EDU169206            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.154.58  | est134666            | Debian 9           | 101.0.4951.54             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.154.35  | est4058              | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.154.28  | est134662            | Debian 9           | 89.0.4389.128             | 60.7.0          | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.154.20  | EDU125530            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.154.69  | EDU4367              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.154.60  | EDU134671            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.154.53  | EDU3401              | Debian 12          | 135.0.7049.52             | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.154.27  | EDU134665            | Debian 12          | 133.0.6943.141            | 128.7.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.154.31  | est4018              | Debian 9           | 101.0.4951.54             | 78.9.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.154.61  | edu0006              | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.154.156 | est134668            | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.154.182 | est4055              | Debian 9           | 102.0.5005.61             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.154.201 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.154.202 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.154.203 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.24  | est2503              | Debian 9           | 102.0.5005.61             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.31  | est4048              | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.25  | EDU4433              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.155.23  | EDU4413              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.155.40  | EDU140157            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.155.27  | EDU140162            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.155.39  | EDU4390              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.155.176 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.202 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.4.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.206 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.5.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.211 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.199 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.222 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.212 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.221 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.228 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.201 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.220 | pmjsXXXXXX           | Debian 11          | 103.0.5060.53             | 102.8.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.207 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.195 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.218 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.155.213 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.38  | est140158            | Debian 9           | 101.0.4951.41             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.59  | est4219              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.30  | est3794              | Debian 9           | 101.0.4951.41             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.22  | est3408              | Debian 9           | 107.0.5304.121            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.32  | est3791              | Debian 9           | 107.0.5304.87             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.21  | est110151            | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.53  | EDU4312              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.156.57  | EDU4313              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.156.56  | EDU158341            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.156.67  | EDU4314              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.156.66  | est361               | Debian 9           | 106.0.5249.103            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.29  | EDU4369              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.156.23  | est3800              | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.54  | EDU4451              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.156.31  | EDU110158            | Debian 12          | 128.0.6613.119            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.156.185 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.188 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.220 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.215 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.218 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.229 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.217 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.223 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.224 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.210 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.230 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.156.186 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.157.34  | est3934              | Debian 9           | 103.0.5060.134            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.157.37  | est2355              | Debian 9           | 102.0.5005.61             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.157.23  | est4125              | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.157.48  | est2420              | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.157.42  | edu0015              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.157.27  | est3989              | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.157.28  | est3867              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.157.21  | est134709            | Debian 9           | 91.0.4472.114             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.157.25  | est3956              | Debian 9           | 107.0.5304.121            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.157.40  | edu4461              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.157.26  | edu4144              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.157.22  | edu4475              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.157.41  | EDU2739              | Debian 12          | 137.0.7151.68             | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.157.30  | EDU4042              | Debian 12          | 137.0.7151.68             | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.157.130 | est3632              | Debian 9           | 102.0.5005.115            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.157.198 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.157.203 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.157.215 | pmjsXXXXXX           | Debian 11          | 137.0.7151.68             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.157.216 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.157.217 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.157.210 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.157.214 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.158.36  | est140161            | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.158.29  | est3727              | Debian 9           | 107.0.5304.121            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.158.34  | edu169264            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.158.31  | edu155568            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.158.33  | edu169263            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.158.23  | edu168280            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.158.25  | EDU155573            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.158.222 | est0001000           | Debian 11          | 138.0.7204.100            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.158.210 | pmjsXXXXXX           | Debian 11          | 138.0.7204.100            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.158.218 | pmjsXXXXXX           | Debian 11          | 138.0.7204.100            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.158.226 | pmjsXXXXXX           | Debian 11          | 138.0.7204.100            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.160.25  | EDU169318            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.160.24  | EDU169317            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.160.26  | EDU4410              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.160.29  | EDU4412              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.160.20  | edu245457            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.160.22  | EDU3996              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.160.227 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.160.224 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.7.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.160.216 | pmjsXXXXXX           | Debian 11          | 128.0.6613.119            | 102.7.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.160.228 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.163.37  | edu155114            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.163.36  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.163.38  | EDU4289              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.163.31  | EDU4294              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.163.40  | EDU155113            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.163.32  | EDU155105            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.163.214 | pmjsXXXXXX           | Debian 11          | 101.0.4951.54             | 91.6.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.163.212 | pmjsXXXXXX           | Debian 11          | 101.0.4951.54             | 91.6.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.163.224 | pmjsXXXXXX           | Debian 11          | 101.0.4951.54             | 91.6.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.163.215 | pmjsXXXXXX           | Debian 11          | 101.0.4951.54             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.163.220 | pmjsXXXXXX           | Debian 11          | 101.0.4951.54             | 115.8.0esr      | PRECISA ATUALIZAR: Chrome, Debian
+192.168.165.212 | pmjs100569           | Debian 11          | 99.0.4844.51              | 115.11.0esr     | PRECISA ATUALIZAR: Chrome, Debian
+192.168.165.227 | pmjs100572           | Debian 11          | 99.0.4844.51              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.165.226 | pmjs100571           | Debian 11          | 96.0.4664.45              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.165.228 | pmjs100573           | Debian 11          | 99.0.4844.51              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.165.229 | pmjs100570           | Debian 11          | 99.0.4844.51              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.167.24  | est3775              | Debian 9           | 94.0.4606.81              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.167.25  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.167.29  | EDU169315            | Debian 12          | 138.0.7204.100            | 128.12.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.167.95  | EDU169316            | Debian 12          | 138.0.7204.100            | 128.12.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.167.27  | edu245092            | Debian 12          | 135.0.7049.84             | 128.9.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.167.94  | EDU169309            | Debian 12          | 138.0.7204.157            | 128.12.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.167.40  | pmjsXXXXXX           | Debian 11          | 138.0.7204.100            | 102.9.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.167.22  | edu158146            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.167.30  | edu140165            | Debian 12          | 138.0.7204.100            | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.167.26  | EDU3767              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.167.41  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.167.90  | edu4244              | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.167.220 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.167.206 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.167.209 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.167.200 | pmjsXXXXXX           | Debian 11          | 138.0.7204.100            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.167.208 | pmjsXXXXXX           | Debian 11          | 138.0.7204.100            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.167.215 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.167.203 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.167.202 | pmjsXXXXXX           | Debian 11          | 138.0.7204.100            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.167.213 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.167.222 | pmjsXXXXXX           | Debian 11          | 138.0.7204.100            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.167.207 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.167.205 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.169.21  | est134723            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.169.27  | pmjsXXXXXX           | Debian 11          | 122.0.6261.128            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.169.25  | EDU169227            | Debian 12          | 132.0.6834.83             | 128.6.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.169.26  | pmjsXXXXXX           | Debian 11          | 115.0.5790.170            | 102.14.0esr     | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.169.161 | est134724            | Debian 9           | 101.0.4951.64             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.169.225 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.169.220 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.169.204 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.169.218 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.169.207 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.4.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.172.22  | edu158321            | Debian 12          | 135.0.7049.84             | 128.9.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.172.37  | edu134747            | Debian 12          | 135.0.7049.84             | 128.9.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.172.136 | est3405              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.172.157 | est134748            | Debian 9           | 107.0.5304.121            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.172.196 | pmjsXXXXXX           | Debian 11          | 133.0.6943.141            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.172.198 | pmjsXXXXXX           | Debian 11          | 133.0.6943.141            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.172.195 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.172.199 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.173.220 | pmjs100613           | Debian 11          | 99.0.4844.74              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.174.22  | est3814              | Debian 9           | 107.0.5304.121            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.174.21  | est3811              | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.174.47  | edu169253            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.174.34  | edu158060            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.174.48  | edu4469              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.174.35  | edu158061            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.174.37  | eduxxxx              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.174.46  | EDU140171            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.174.51  | edu4479              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.174.23  | est3760              | Debian 9           | 101.0.4951.54             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.174.38  | EDU110195            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.174.45  | EDU110188            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.174.32  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.174.169 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.174.171 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.174.183 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.174.194 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.174.204 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.174.209 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.175.28  | est134642            | Debian 9           | 91.0.4472.114             | 60.6.1          | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.175.21  | est134638            | Debian 9           | 91.0.4472.114             | 60.5.1          | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.175.25  | est134641            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.175.23  | est134637            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.175.24  | est134640            | Debian 9           | 101.0.4951.41             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.175.31  | est3755              | Debian 9           | 107.0.5304.121            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.175.30  | est3765              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.175.26  | est134639            | Debian 9           | 91.0.4472.114             | 60.7.2          | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.175.35  | edu140148            | Debian 12          | 138.0.7204.92             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.175.27  | est2948              | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.175.22  | est2791              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.175.29  | est2107              | Debian 9           | 107.0.5304.121            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.175.219 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.176.21  | est3279              | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.176.22  | est3281              | Debian 11          | 94.0.4606.71              | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.176.217 | pmjs134390           | Debian 11          | 96.0.4664.45              | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.176.224 | pmjs134432           | Debian 11          | 133.0.6943.126            | 128.7.0esr      | PRECISA ATUALIZAR: Chrome, Debian
+192.168.177.23  | est134601            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.177.24  | est134607            | Debian 9           | 105.0.5195.125            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.177.28  | est134606            | Debian 9           | 105.0.5195.102            | 78.6.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.177.27  | est134605            | Debian 9           | 91.0.4472.114             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.177.65  | est140152            | Debian 9           | 105.0.5195.125            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.177.34  | est134599            | Debian 9           | 91.0.4472.114             | 60.7.2          | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.177.32  | est134608            | Debian 9           | 91.0.4472.114             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.177.38  | EDU2144              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.177.21  | est134602            | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.177.30  | est134598            | Debian 9           | 91.0.4472.114             | 60.7.2          | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.177.126 | pmjsXXXXXX           | Debian 11          | 133.0.6943.141            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.177.178 | est4245              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.177.174 | pmjsXXXXXX           | Debian 11          | 109.0.5414.119            | 102.7.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.177.165 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.177.169 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.177.176 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.177.64  | EDU3457              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.179.21  | pmjs109462           | Debian 12          | 131.0.6778.139            | 128.3.1esr      | PRECISA ATUALIZAR: Chrome
+192.168.179.212 | pmjs134445           | Debian 11          | 102.0.5005.61             | 91.9.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.179.214 | pmjs134446           | Debian 11          | 102.0.5005.61             | 91.9.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.179.215 | pmjs134447           | Debian 11          | 107.0.5304.110            | 102.4.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.182.138 | pmjs100697           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.182.156 | pmjs100700           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.182.169 | pmjs100701           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.182.170 | pmjs100704           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.182.167 | pmjs100699           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.182.171 | pmjs100703           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.182.168 | pmjs100698           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.182.166 | pmjs100702           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.184.27  | pmjs135920           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.184.26  | pmjs135954           | Debian 10          | 96.0.4664.110             | 68.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.184.25  | pmjs112204           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.184.31  | s99674               | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.184.228 | s3380                | Debian 11          | 139.0.7258.127            | 128.13.0esr     | PRECISA ATUALIZAR: Debian
+192.168.184.208 | est1746              | Debian 11          | 109.0.5414.74             | 102.7.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.184.195 | pmjs072436           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.185.24  | est2720              | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.185.26  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.185.25  | est2722              | Debian 9           | 101.0.4951.41             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.185.21  | est3568              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.185.23  | edu3575              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.185.27  | edu3462              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.185.22  | EDU3342              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.185.123 | est3577              | Debian 9           | 107.0.5304.110            | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.185.227 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.185.226 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.185.211 | pmjsXXXXXX           | Debian 11          | 131.0.6778.69             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.185.216 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.185.215 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.185.228 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.185.229 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.185.223 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.185.217 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.20  | est134655            | Debian 9           | 103.0.5060.53             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.22  | edu157899            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.24  | edu134656            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.41  | est140154            | Debian 9           | 103.0.5060.53             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.52  | est3166              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.32  | est134647            | Debian 9           | 91.0.4472.114             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.63  | est134670            | Debian 9           | 89.0.4389.128             | 60.7.0          | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.47  | est00000             | Debian 9           | 102.0.5005.61             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.33  | est134646            | Debian 9           | 102.0.5005.61             | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.23  | est134648            | Debian 9           | 91.0.4472.114             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.25  | est134650            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.28  | EDU4285              | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.186.69  | EDU4130              | Debian 12          | 133.0.6943.141            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.186.26  | edu134644            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.186.27  | est2501              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.68  | pmjsXXXXXX           | Debian 11          | 110.0.5481.100            | 102.4.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.66  | EDU134654            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.186.46  | est3560              | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.81  | est3559              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.21  | pmjsXXXXXX           | Debian 11          | 133.0.6943.141            | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.163 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.162 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.115 | est                  | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.174 | pmjsXXXXXX           | Debian 11          | 133.0.6943.141            | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.183 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.221 | pmjsXXXXXX           | Debian 11          | 103.0.5060.53             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.186.177 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.205.78  | pmjs100687           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.205.226 | pmjs100659           | Debian 11          | 100.0.4896.60             | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.205.222 | pmjs100690           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.206.31  | est1797              | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.206.21  | pmjs135883           | Debian 10          | 76.0.3809.132             | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.206.24  | pmjs135877           | Debian 10          | 124.0.6367.60             | 91.12.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.206.224 | pmjs135853           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.208.51  | pmjs98254            | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.208.24  | pmjs136020           | Debian 12          | 135.0.7049.52             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.208.192 | pmjs156857           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.210.20  | edu4211              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.210.26  | EDU4449              | Debian 12          | 134.0.6998.88             | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.210.226 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.210.217 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.210.224 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.6.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.211.48  | est3079              | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.212.33  | pmjs100582           | Debian 11          | 99.0.4844.51              | 91.6.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.212.22  | s1893                | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.212.20  | pmjs100589           | Debian 11          | 99.0.4844.51              | 91.6.1esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.212.226 | pmjs100581           | Debian 11          | 99.0.4844.51              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.213.24  | pmjsXXXXXX           | Debian 11          | 130.0.6723.58             | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.213.23  | edu169237            | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.213.28  | est4209              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.213.20  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.8.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.213.21  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 102.10.0esr     | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.213.34  | edu4488              | Debian 12          | 134.0.6998.88             | 128.8.0esr      | PRECISA ATUALIZAR: Chrome
+192.168.213.27  | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.215.24  | pmjs100609           | Debian 11          | 99.0.4844.51              | 91.7.0esr       | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.223.25  | est2770              | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.223.27  | est134736            | Debian 9           | 102.0.5005.61             | 91.10.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.223.26  | es134735t            | Debian 9           | 107.0.5304.110            | 91.11.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.223.28  | EDU158216            | Debian 12          | 128.0.6613.137            | 115.15.0esr     | PRECISA ATUALIZAR: Chrome
+192.168.223.224 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 78.15.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.223.226 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 91.13.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.223.197 | pmjsXXXXXX           | Debian 11          | 96.0.4664.45              | 91.13.0esr      | PRECISA ATUALIZAR: Chrome, Debian, Firefox
+192.168.228.25  | pmjs092407           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.228.30  | pmjs114238           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.243.30  | pmjs103493           | Debian 11          | 139.0.7258.138            | 128.14.0esr     | PRECISA ATUALIZAR: Debian
+192.168.243.28  | pmjs103491           | Debian 11          | 139.0.7258.138            | 128.13.0esr     | PRECISA ATUALIZAR: Debian
