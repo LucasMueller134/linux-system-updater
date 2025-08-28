@@ -24,8 +24,8 @@ O código real em produção não pode ser publicado por motivos de **segurança
 
 ##  Como usar
 Clone este repositório e execute o script em uma máquina Debian:
-
-
+---
+---
 
 
 Computadores.py
