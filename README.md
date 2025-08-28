@@ -1,12 +1,12 @@
-#Atualizador.py:
-# 🔄 Atualizador Automático Debian (Demo)
+Atualizador.py:
+#  Atualizador Automático Debian (Demo)
 
 Este repositório apresenta uma **versão demonstrativa** de um projeto desenvolvido por mim durante meu estágio na **Prefeitura de Jaraguá do Sul**.  
 O código real em produção não pode ser publicado por motivos de **segurança e confidencialidade**, mas este exemplo mostra como automatizo o processo de atualização em sistemas Linux/Debian.
 
 ---
 
-## 🚀 O que este script faz
+##  O que este script faz
 - Atualiza automaticamente pacotes em sistemas **Debian/Ubuntu**;
 - Executa comandos como `apt update`, `apt upgrade` e `apt dist-upgrade` de forma não interativa;
 - Trata erros comuns durante o processo de atualização;
@@ -15,22 +15,22 @@ O código real em produção não pode ser publicado por motivos de **segurança
 
 ---
 
-## 📋 Pré-requisitos
+##  Pré-requisitos
 - Sistema baseado em **Debian/Ubuntu**;
 - Python 3.8+ instalado;
 - Permissões administrativas (root ou sudo).
 
 ---
 
-## ⚡ Como usar
+##  Como usar
 Clone este repositório e execute o script em uma máquina Debian:
 
 
 
 
-#Computadores.py
+Computadores.py
 
-# 🔎 Scanner de Rede Linux + Envio do Atualizador (DEMO / Vitrine)
+#  Scanner de Rede Linux + Envio do Atualizador (DEMO / Vitrine)
 
 Este repositório apresenta **um dos projetos que desenvolvi na Prefeitura de Jaraguá do Sul**.  
 Por **segurança e confidencialidade**, o sistema completo usado em produção **não é publicado**.  
@@ -42,7 +42,7 @@ Aqui você encontra uma **versão demonstrativa** que preserva o fluxo principal
 - Gera relatórios (`ip-*.txt`, `RESUMO_GERAL_LINUX_MACHINES.txt`, `FINAL_ATUALIZAR.txt` e `.csv`);
 - **Opcionalmente**, envia um `Atualizador.py` (payload) para **IPs específicos** definidos por você e executa remotamente.
 
-> ⚠️ O objetivo desta vitrine é demonstrar minha experiência prática em **automação com Python**, **infraestrutura Linux** e **operações remotas seguras**.
+ O objetivo desta vitrine é demonstrar minha experiência prática em **automação com Python**, **infraestrutura Linux** e **operações remotas seguras**.
 
 ## Segurança / Sigilo
 - Removi **usuário, senha, IPs e caminhos internos** do código.  
