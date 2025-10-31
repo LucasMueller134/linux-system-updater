@@ -7,6 +7,23 @@ import sys
 import glob
 import time
 from datetime import datetime
+import shlex
+import threading
+import pwd # --- ADICIONADO --- (Necessário para a nova função)
+
+
+_POP = globals().get("_POP", {
+    "env": {},
+    "user": None,
+    "uid": None,
+    "writer": None,
+    "pidfile": "/run/pmjs-upgrade-ui.pid",
+    "fifo": "/run/pmjs-upgrade-ui.fifo",
+    "display": ":0",
+    "started": False,
+    "use": None,          # "yad" | "zenity"
+    "banner": ""
+})
 
 # Diretório de logs (fallback para /tmp se /var/log não estiver disponível)
 LOG_DIR = "/var/log/auto-upgrade"
@@ -99,31 +116,72 @@ def diagnose_chrome_update_failure(target_major: int = 139) -> str:
     return "\n- " + "\n- ".join(reasons)
 
 def run_remote_command(host, command):
-    """Executa um comando remoto com tratamento de erros e de forma segura."""
-    # shlex.quote escapa o comando para que seja interpretado como uma única string segura
+    """
+    (VERSÃO 3 - CORRIGIDA PARA DECODE ERROR) Executa um comando remoto
+    lendo bytes brutos e decodificando manualmente para evitar 'unexpected end of data'.
+    """
     safe_command = shlex.quote(command)
     ssh_command = f"ssh {host} {safe_command}"
+    print(f"\n--- [INÍCIO] Executando em {host}: {command} ---")
 
     try:
-        # subprocess.run é mais moderno e direto para aguardar um comando finalizar
-        result = subprocess.run(
+        # --- MODIFICAÇÃO AQUI ---
+        # Trocamos text=True por text=False e removemos encoding/errors.
+        # Agora vamos ler BYTES brutos.
+        process = subprocess.Popen(
             ssh_command,
             shell=True,
-            capture_output=True,
-            text=True,
-            encoding='utf-8',
-            errors='replace' # Garante que não haverá falha por caracteres inválidos
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=False # MUITO IMPORTANTE: ler bytes
         )
 
-        if result.returncode != 0:
-            print(f"Erro ao executar comando remoto em {host}:\n{result.stderr}")
-            return False
+        # Função para ler e imprimir a saída de um stream (stdout ou stderr)
+        def stream_reader(pipe, pipe_name):
+            try:
+                # O 'pipe' agora entrega 'bytes', não 'str'
+                for line_bytes in pipe:
+                    try:
+                        # --- MODIFICAÇÃO AQUI ---
+                        # Decodificamos a linha manualmente, tratando erros.
+                        line_str = line_bytes.decode('utf-8', errors='replace')
+                        
+                        # Imprime cada linha em tempo real
+                        print(f"[{host}-{pipe_name}] {line_str.strip()}", flush=True)
+                    
+                    except Exception as decode_e:
+                        # Fallback caso a linha seja impossível de decodificar
+                        print(f"[{host}-{pipe_name}] [ERRO DECODE] {decode_e}")
 
-        # Se precisar do stdout, ele está em result.stdout
-        return True
+            except Exception as e:
+                # Este 'except' captura erros na leitura do pipe (ex: pipe quebrado)
+                # O erro que você viu ('utf-8' codec) estava acontecendo ANTES,
+                # dentro do 'for line in pipe' na versão com text=True.
+                print(f"Erro lendo o stream {pipe_name} de {host}: {e}")
+
+        # Criamos threads para ler stdout e stderr simultaneamente sem travar um ao outro
+        stdout_thread = threading.Thread(target=stream_reader, args=(process.stdout, "out"))
+        stderr_thread = threading.Thread(target=stream_reader, args=(process.stderr, "err"))
+
+        stdout_thread.start()
+        stderr_thread.start()
+
+        # Espera as threads terminarem (ou seja, a saída do comando acabar)
+        stdout_thread.join()
+        stderr_thread.join()
+        
+        # Espera o processo em si terminar e pega o código de saída
+        return_code = process.wait()
+
+        if return_code != 0:
+            print(f"--- [FALHA] Comando em {host} finalizou com erro (código: {return_code}) ---")
+        else:
+            print(f"--- [SUCESSO] Comando em {host} concluído ---")
+        
+        return return_code == 0
 
     except Exception as e:
-        print(f"Erro na conexão remota com {host}: {str(e)}")
+        print(f"ERRO CRÍTICO ao tentar executar comando em {host}: {e}")
         return False
 
 
@@ -255,10 +313,16 @@ def codename_for_version(ver: int) -> str:
     return mapping.get(ver)
 
 def clean_sources_list():
-    """Remove linhas duplicadas do arquivo sources.list."""
+    """Remove linhas duplicadas do arquivo sources.list, se ele existir."""
     sources_path = '/etc/apt/sources.list'
 
-    backup_path = f"{sources_path}.bak"
+    # --- MODIFICAÇÃO AQUI ---
+    # Primeiro, verifica se o arquivo realmente existe.
+    if not os.path.exists(sources_path):
+        print(f"Aviso: O arquivo {sources_path} não existe. Pulando a limpeza deste arquivo.")
+        return  # Sai da função tranquilamente se o arquivo não for encontrado.
+
+    backup_path = f"{sources_path}.bak.{int(time.time())}"
     shutil.copy2(sources_path, backup_path)
     print(f"Backup do sources.list criado em {backup_path}")
 
@@ -507,6 +571,8 @@ def ensure_net_download_tools():
         # Instala o que faltar (sem recomendações para ser leve)
         env = os.environ.copy()
         env["DEBIAN_FRONTEND"] = "noninteractive"
+        # MODIFICAÇÃO: Adicionado LC_ALL para evitar erros de locale
+        env["LC_ALL"] = "C.UTF-8"
         subprocess.run(
             "apt-get install -y --no-install-recommends curl wget gnupg ca-certificates",
             shell=True, check=False, env=env
@@ -761,6 +827,8 @@ def run_upgrade_process(interactive=False):
         env["UCF_FORCE_CONFFOLD"] = "1"
         env["UCF_FORCE_CONFFNEW"] = "0"
         env["UCF_FORCE_CONFFMISS"] = "1"
+        # MODIFICAÇÃO: Adicionado LC_ALL para evitar erros de locale
+        env["LC_ALL"] = "C.UTF-8"
 
         # Debconf Assinador
         try:
@@ -927,6 +995,8 @@ def check_and_install_expect():
         try:
             env = os.environ.copy()
             env["DEBIAN_FRONTEND"] = "noninteractive"
+            # MODIFICAÇÃO: Adicionado LC_ALL para evitar erros de locale
+            env["LC_ALL"] = "C.UTF-8"
             subprocess.run("apt-get update -qq && apt-get install -y expect",
                           shell=True, check=True, env=env)
             print("Pacote expect instalado com sucesso.")
@@ -944,95 +1014,70 @@ def check_and_install_expect():
 
 def auto_respond_command(command, env=None, timeout=3600, log_path=None):
     """
-    Executa um comando com respostas automáticas via 'expect', de forma segura.
-    Esta função deve ser a única responsável por criar e executar scripts expect.
+    (VERSÃO COM MODO SILENCIOSO) Executa um comando com respostas automáticas via 'expect',
+    usando o modo 'quiet' do apt para reduzir a saída de texto e evitar sobrecarga do buffer.
     """
     print(f"\nExecutando com respostas automáticas: {command}")
 
-    # Garante que 'expect' está instalado antes de prosseguir
     if not ensure_expect_installed(env=env):
         print("[AVISO] 'expect' não disponível. Executando comando diretamente, pode travar em prompts.")
-        # Fallback para execução direta sem automação de prompts
         return subprocess.run(command, shell=True, env=env, timeout=timeout).returncode == 0
 
-    # Injeta opções para forçar a manutenção de arquivos de configuração
-    safe_command = command
-    if command.lstrip().startswith(('apt', 'apt-get')) and "Dpkg::Options" not in command:
-        inject = ' -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" '
-        parts = command.split()
-        safe_command = parts[0] + inject + " ".join(parts[1:])
+    # --- MODIFICAÇÃO AQUI ---
+    # Adiciona a flag -q (quiet) para reduzir a verbosidade do apt.
+    # Usamos -y -q em vez de -qq para ainda ver o progresso essencial sem a lista de pacotes.
+    if command.lstrip().startswith(('apt', 'apt-get')):
+        if ' -y' in command and ' -q' not in command:
+            command = command.replace(' -y', ' -y -q')
+        elif ' -y' not in command and ' -q' not in command:
+             # Caso o comando não tenha -y, adicionamos ambos
+            parts = command.split()
+            command = parts[0] + " -y -q " + " ".join(parts[1:])
 
-    # Escapa o comando final para ser seguramente embutido no script 'expect'
-    escaped_cmd_for_bash = shlex.quote(safe_command)
-    
-    # Ambiente padrão para não-interatividade
+    command_parts = shlex.split(command)
+
     final_env = os.environ.copy()
     if env:
         final_env.update(env)
     
     defaults = {
-        "DEBIAN_FRONTEND": "noninteractive",
-        "DEBCONF_NONINTERACTIVE_SEEN": "true",
-        "APT_LISTCHANGES_FRONTEND": "none",
-        "UCF_FORCE_CONFFOLD": "1" # Manter sempre a versão local do conffile
+        "DEBIAN_FRONTEND": "noninteractive", "DEBCONF_NONINTERACTIVE_SEEN": "true",
+        "APT_LISTCHANGES_FRONTEND": "none", "UCF_FORCE_CONFFOLD": "1", "LC_ALL": "C.UTF-8"
     }
     for key, value in defaults.items():
         final_env.setdefault(key, value)
 
     script_content = f"""
 #!/usr/bin/expect -f
-# Codificação do sistema para lidar com acentos nos prompts
-encoding system utf-8
+set command [lindex $argv 0]
 set timeout {timeout}
 log_user 1
-
-# Usa 'spawn bash -c' para garantir que o comando completo seja executado corretamente
-spawn bash -c {escaped_cmd_for_bash}
-
-# Respostas automáticas para prompts comuns em português e inglês
+eval spawn $command
 expect {{
-    # Confirmação de continuação
-    -re "Do you want to continue\\?.*"      {{ send "Y\\r"; exp_continue }}
-    -re "Deseja continuar\\?.*"             {{ send "S\\r"; exp_continue }}
-
-    # Manutenção de arquivos de configuração (conffiles)
-    -re "install the package maintainer's version" {{ send "N\\r"; exp_continue }}
+    -re "O que você quer fazer sobre o arquivo de configuração modificado(.|\\n)*manter a versão local atualmente instalada" {{ send "2\\r"; exp_continue }}
+    -re "Deseja continuar\\?.*" {{ send "S\\r"; exp_continue }}
+    -re "Do you want to continue\\?.*" {{ send "Y\\r"; exp_continue }}
     -re "instalar a versão do mantenedor do pacote" {{ send "N\\r"; exp_continue }}
-    -re "keep the local version currently installed" {{ send "Y\\r"; exp_continue }}
     -re "manter a versão local atualmente instalada" {{ send "S\\r"; exp_continue }}
-    -re "What do you want to do about modified configuration file" {{ send "keep"; exp_continue }}
-
-    # Reinício de serviços
-    -re "Restart services during package upgrades" {{ send "Yes\\r"; exp_continue }}
-    -re "Reiniciar serviços durante atualizações"   {{ send "Sim\\r"; exp_continue }}
-    
-    # Prompt do Assinador
+    -re {{\\(Y/I/N/O/D/Z\\) \\[padrão=N\\]}} {{ send "N\\r"; exp_continue }}
+    -re "Reiniciar serviços durante atualizações" {{ send "Sim\\r"; exp_continue }}
     -re "Iniciar o Assinador junto com o sistema" {{ send "N\\r"; exp_continue }}
-
-    # Fim da execução
     eof
 }}
-
-# Captura o código de saída do processo para retornar ao Python
 catch wait result
 exit [lindex $result 3]
 """
     try:
-        # Usar um arquivo temporário nomeado para o script
         with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.exp', encoding='utf-8') as f:
             f.write(script_content)
             expect_script_path = f.name
-        
         os.chmod(expect_script_path, 0o755)
-
-        proc = subprocess.Popen(f"expect {shlex.quote(expect_script_path)}", shell=True, env=final_env)
-        proc.wait(timeout=timeout + 60) # Adiciona uma margem ao timeout
+        proc = subprocess.Popen([f"expect", expect_script_path, command], env=final_env)
+        proc.wait(timeout=timeout + 120)
         return proc.returncode == 0
-
     except subprocess.TimeoutExpired:
-        print(f"Timeout atingido após {timeout}s para o comando: {command}")
-        if 'proc' in locals() and proc.poll() is None:
-            proc.kill()
+        print(f"Timeout atingido para o comando: {command}")
+        if 'proc' in locals() and proc.poll() is None: proc.kill()
         return False
     except Exception as e:
         print(f"Erro inesperado ao executar comando com 'expect': {e}")
@@ -1044,30 +1089,42 @@ exit [lindex $result 3]
 
 def run_robust_upgrade() -> bool:
     """
-    (VERSÃO CORRIGIDA) Executa um processo de atualização completo de forma robusta e não-interativa.
-    Remove as opções redundantes de Dpkg::Options que causavam o erro.
+    (MODIFICADO PARA PROGRESSO GRANULAR) Executa atualização, usando
+    run_apt_command_with_progress para o upgrade.
     """
     print("\n=== INICIANDO PROCESSO DE ATUALIZAÇÃO ROBUSTO (v2) ===")
 
-    # --- Preparação ---
-    quarantine_b43_installer()
-    purge_old_kernels(keep_n=2)
-    free_boot_space(900)
+    base_progress = 5 
+    update_custom_gui(f"!!PERCENT!!:{base_progress}")
+
+    # --- Preparação --- (~5% do progresso)
+    update_custom_gui("Preparando o sistema (limpeza)...")
+    preemptive_root_cleanup(); quarantine_b43_installer()
+    
+    # --- ADIÇÃO CRÍTICA (Correção QGIS Segfault) ---
+    # Chama a função de quarentena do QGIS que neutraliza os scripts
+    # que causam "Segmentation fault" e impedem o apt de continuar.
+    try:
+        purge_qgis_broken()
+    except Exception as e:
+        print(f"[AVISO] A quarentena do QGIS falhou, mas tentando continuar: {e}")
+    # --- FIM DA ADIÇÃO ---
+
+    purge_old_kernels(keep_n=2); free_boot_space(900)
     check_and_clear_apt_locks()
+    prep_end_progress = 10
+    update_custom_gui(f"!!PERCENT!!:{prep_end_progress}")
 
     env = os.environ.copy()
     env["DEBIAN_FRONTEND"] = "noninteractive"
-    
-    # --- Configuração Não-Interativa via Arquivo Temporário ---
+    env["LC_ALL"] = "C.UTF-8"
+
+    # Configuração não-interativa (igual a antes)
+    # ... (código do config_dir, config_file_path, apt_options) ...
     dpkg_config_content = "force-confold\nforce-confdef\n"
     config_dir = tempfile.mkdtemp()
     config_file_path = os.path.join(config_dir, "99-auto-upgrade-no-prompt")
-    
-    with open(config_file_path, 'w') as f:
-        f.write(dpkg_config_content)
-
-    # Construímos as opções do APT para usar nossa configuração e desabilitar e-mails.
-    # AS OPÇÕES PROBLEMÁTICAS FORAM REMOVIDAS DAQUI.
+    with open(config_file_path, 'w') as f: f.write(dpkg_config_content)
     apt_options = [
         '-o', f'Dir::Etc::parts={config_dir}',
         '-o', 'APT::List-Changes::Send-Emails=false'
@@ -1075,43 +1132,62 @@ def run_robust_upgrade() -> bool:
 
     try:
         # --- Execução ---
-        # 1. Atualizar a lista de pacotes
-        print("\n[FASE 1/4] Executando 'apt update'...")
-        update_cmd = ["apt", "update"] + apt_options
-        # Adicionamos --allow-releaseinfo-change para evitar erros em upgrades de versão
-        subprocess.run(update_cmd + ["--allow-releaseinfo-change"], env=env, check=True)
+        # 1. apt update (~5% do progresso)
+        update_start_progress = prep_end_progress # 10%
+        update_custom_gui("Atualizando lista de pacotes...")
+        # Usar auto_respond_command aqui, pois update é rápido e pode ter prompts raros
+        update_cmd_str = "apt update --allow-releaseinfo-change" 
+        if not auto_respond_command(update_cmd_str + " " + " ".join(apt_options), env=env, timeout=900):
+             print("[ERRO] Falha no apt update.")
+             # Tenta continuar mesmo assim? Ou retorna False? Vamos tentar continuar.
+        update_end_progress = 15
+        update_custom_gui(f"!!PERCENT!!:{update_end_progress}")
 
-        # 2. Executar a atualização principal
-        print("\n[FASE 2/4] Executando 'apt -y full-upgrade'...")
-        upgrade_cmd = ["apt", "-y", "full-upgrade"] + apt_options
-        subprocess.run(upgrade_cmd, env=env, check=True)
+        # 2. apt full-upgrade (A parte mais longa, ~45% do progresso: 15% -> 60%)
+        upgrade_start_progress = update_end_progress # 15%
+        upgrade_end_progress = 60
+        update_custom_gui("Instalando atualizações do sistema...")
+        # USA A NOVA FUNÇÃO AQUI! Note que removemos o '-q'
+        upgrade_cmd_list = ["apt", "-y", "full-upgrade"] + apt_options 
+        if not run_apt_command_with_progress(upgrade_cmd_list, env, upgrade_start_progress, upgrade_end_progress):
+            # O erro já foi tratado dentro da função, mas precisamos retornar False
+            raise subprocess.CalledProcessError(1, " ".join(upgrade_cmd_list)) # Simula o erro
+        # Progresso já foi atualizado para upgrade_end_progress pela função
 
-        # 3. Remover pacotes desnecessários
-        print("\n[FASE 3/4] Executando 'apt -y autoremove'...")
-        autoremove_cmd = ["apt", "-y", "--purge", "autoremove"] + apt_options
-        subprocess.run(autoremove_cmd, env=env, check=True)
+        # 3. apt autoremove (~5% do progresso: 60% -> 65%)
+        autoremove_start_progress = upgrade_end_progress # 60%
+        update_custom_gui("Removendo pacotes desnecessários...")
+        autoremove_cmd_str = "apt -y --purge autoremove"
+        # auto_respond pode ser usado aqui, é rápido
+        auto_respond_command(autoremove_cmd_str + " " + " ".join(apt_options), env=env, timeout=900)
+        autoremove_end_progress = 65
+        update_custom_gui(f"!!PERCENT!!:{autoremove_end_progress}")
 
-        # 4. Limpar o cache
-        print("\n[FASE 4/4] Executando 'apt clean'...")
-        clean_cmd = ["apt", "clean"]
-        subprocess.run(clean_cmd, env=env, check=True)
-        
+        # 4. apt clean (~5% do progresso: 65% -> 70%)
+        clean_start_progress = autoremove_end_progress # 65%
+        update_custom_gui("Limpando cache de pacotes...")
+        clean_cmd_str = "apt clean"
+        # auto_respond pode ser usado aqui
+        auto_respond_command(clean_cmd_str, env=env, timeout=600) 
+        clean_end_progress = 70 
+        update_custom_gui(f"!!PERCENT!!:{clean_end_progress}")
+
         print("\n✅ Processo de atualização concluído com sucesso!")
         return True
 
     except subprocess.CalledProcessError as e:
-        print(f"\n❌ ERRO: Ocorreu um erro durante a fase de atualização.")
-        print(f"Comando que falhou: {' '.join(e.cmd)}")
-        print(f"Código de saída: {e.returncode}")
+        print(f"\nERRO: Ocorreu um erro durante a fase de atualização.")
+        print(f"Comando que falhou: {e.cmd}")
+        update_custom_gui("Erro durante a atualização. Tentando recuperar...")
         print("Tentando executar 'dpkg --configure -a' e 'apt --fix-broken install' para recuperação...")
-        subprocess.run(["dpkg", "--configure", "-a"], env=env)
-        subprocess.run(["apt", "--fix-broken", "install", "-y"] + apt_options, env=env)
+        # Usar auto_respond para os comandos de reparo
+        auto_respond_command("dpkg --configure -a", env=env, timeout=1200)
+        auto_respond_command("apt --fix-broken install -y" + " " + " ".join(apt_options), env=env, timeout=1800)
         return False
     except Exception as e:
-        print(f"\n❌ ERRO INESPERADO: {e}")
+        print(f"\nERRO INESPERADO: {e}")
         return False
     finally:
-        # --- Limpeza ---
         if os.path.exists(config_dir):
             shutil.rmtree(config_dir)
         print("Limpeza finalizada.")
@@ -1385,75 +1461,51 @@ def check_and_clear_apt_locks():
 
     return locks_cleared
 
+def ensure_all_keys_are_valid():
+    """
+    Função agregadora para garantir que tanto as chaves do Debian quanto
+    as de terceiros (Google) estão corretamente instaladas ANTES do upgrade.
+    """
+    print("\n[CHAVES] Verificando e corrigindo todas as chaves de repositório...")
+    ensure_debian_archive_keyring() # Função que já existe no seu script
+    add_google_keys()               # Função melhorada para as chaves do Google
+    print("[CHAVES] Verificação concluída. Executando 'apt update' para confirmar...")
+    # Roda um update para garantir que tudo está funcionando antes do upgrade principal
+    subprocess.run("apt update", shell=True)
+
 def add_google_keys():
     """
-    (REESCRITA) Baixa a chave pública *atual* do Google e cria os repositórios Chrome/Earth
-    usando HTTPS e 'signed-by'. Tolera ausência de curl (usa wget como fallback) e
-    evita deixar /etc/apt/keyrings/google.gpg vazio se o download falhar.
+    (VERSÃO CORRIGIDA) Baixa e instala a chave GPG do Google de forma robusta,
+    resolvendo os erros de NO_PUBKEY.
     """
-    print("Adicionando chaves e repositórios do Google...")
-
+    print("Garantindo que a chave GPG do Google esteja instalada e válida...")
+    
+    # Garante que as ferramentas necessárias estão presentes
     ensure_net_download_tools()
-
-    keyring_dir = '/etc/apt/keyrings'
-    os.makedirs(keyring_dir, exist_ok=True)
-    google_keyring = os.path.join(keyring_dir, "google.gpg")
-
-    # Se o keyring existir mas estiver muito pequeno, trata como corrompido
+    
+    key_url = "https://dl.google.com/linux/linux_signing_key.pub"
+    keyring_path = "/etc/apt/trusted.gpg.d/google-linux-signing-key.gpg"
+    
+    # Comando para baixar a chave, converter para o formato correto e salvar
+    # O 'tee' permite que o comando seja executado com privilégios de root via 'sudo' se necessário
+    # Adicionado 'set -o pipefail' para garantir que o comando falhe se o download falhar
+    key_install_cmd = (
+        f"set -o pipefail; curl -fsSL '{key_url}' | gpg --dearmor | tee '{keyring_path}' > /dev/null"
+    )
+    
     try:
-        if os.path.exists(google_keyring) and os.path.getsize(google_keyring) < 1024:
-            print("Keyring do Google parece corrompido (muito pequeno). Removendo para recriar...")
-            os.remove(google_keyring)
-    except Exception:
-        pass
-
-    # Baixar chave oficial (bundle atual com chave primária 0xD38B4796 e subchaves rotativas)
-    try:
-        fetch_and_dearmor = (
-            "(command -v curl >/dev/null 2>&1 && "
-            " curl -fsSL 'https://dl.google.com/linux/linux_signing_key.pub' "
-            " || wget -qO- 'https://dl.google.com/linux/linux_signing_key.pub')"
-            " | gpg --dearmor > '/etc/apt/keyrings/google.gpg'"
-        )
-        subprocess.run(fetch_and_dearmor, shell=True, check=True)
-        subprocess.run("chmod 0644 /etc/apt/keyrings/google.gpg", shell=True, check=True)
-        print("Keyring do Google instalado/atualizado com sucesso.")
+        # Executa o comando em um shell bash para garantir a interpretação correta
+        result = subprocess.run(["bash", "-c", key_install_cmd], check=True, capture_output=True)
+        print("✅ Chave GPG do Google instalada/atualizada com sucesso.")
+        return True
     except subprocess.CalledProcessError as e:
-        print(f"Falha ao instalar keyring do Google: {e}")
+        print("[ERRO] Falha ao instalar a chave GPG do Google.")
+        print(f"   Comando: {key_install_cmd}")
+        print(f"   Saída do Erro: {e.stderr.decode('utf-8', 'replace')}")
         return False
-
-    # Recria listas com HTTPS e signed-by
-    try:
-        os.makedirs('/etc/apt/sources.list.d', exist_ok=True)
-        with open('/etc/apt/sources.list.d/google-chrome.list', 'w') as f:
-            f.write("deb [arch=amd64 signed-by=/etc/apt/keyrings/google.gpg] https://dl.google.com/linux/chrome/deb/ stable main\n")
-        with open('/etc/apt/sources.list.d/google-earth.list', 'w') as f:
-            f.write("deb [arch=amd64 signed-by=/etc/apt/keyrings/google.gpg] https://dl.google.com/linux/earth/deb stable main\n")
-        print("Repositórios do Google configurados (HTTPS + signed-by).")
     except Exception as e:
-        print(f"Erro ao escrever listas do Google: {e}")
+        print(f"[ERRO] Ocorreu um erro inesperado ao configurar a chave do Google: {e}")
         return False
-
-    # Bypass opcional de proxy para dl.google.com
-    try:
-        with open('/etc/apt/apt.conf.d/99-google-direct', 'w') as f:
-            f.write('Acquire::https::Proxy::dl.google.com "DIRECT";\n')
-            f.write('Acquire::http::Proxy::dl.google.com  "DIRECT";\n')
-        print("Bypass de proxy para dl.google.com aplicado (DIRECT).")
-    except Exception as e:
-        print(f"Aviso: não consegui gravar 99-google-direct: {e}")
-
-    # Atualiza listas apenas para validar que a chave foi aceita
-    try:
-        subprocess.run(
-            'apt update -o Acquire::https::Proxy::dl.google.com="DIRECT" '
-            '-o Acquire::http::Proxy::dl.google.com="DIRECT"',
-            shell=True, check=False
-        )
-    except Exception:
-        pass
-
-    return True
 
 def fix_google_earth_lists():
     """
@@ -1692,12 +1744,40 @@ def get_firefox_version_tuple():
             continue
     return (0, 0, 0)
 
-def step_upgrade_to(target_ver: int) -> bool:
+def _run_streamed_local(command_list: list, env: dict) -> bool:
     """
-    (VERSÃO 3 - ROBUSTA PARA SALTO DE VERSÃO)
-    Executa o procedimento correto e delicado para um salto de versão de SO,
-    incluindo a instalação do novo keyring de forma não-autenticada
-    para depois poder rodar a atualização completa de forma segura.
+    Função auxiliar para executar um comando localmente, transmitindo a saída em
+    tempo real para o console. Isso evita erros de buffer e decodificação.
+    """
+    print(f"\n[EXEC] {' '.join(command_list)}")
+    try:
+        process = subprocess.Popen(
+            command_list,
+            env=env,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            encoding='utf-8',
+            errors='replace'  # Substitui caracteres inválidos em vez de quebrar
+        )
+
+        # Lê e imprime cada linha da saída em tempo real
+        for line in process.stdout:
+            print(line, end='', flush=True)
+
+        return_code = process.wait()
+        if return_code != 0:
+            print(f"--- [FALHA] Comando finalizou com erro (código: {return_code}) ---")
+        return return_code == 0
+    except Exception as e:
+        print(f"ERRO CRÍTICO ao executar comando local: {e}")
+        return False
+
+def step_upgrade_to(target_ver: int, step_start_progress: float, step_end_progress: float) -> bool:
+    """
+    (CORRIGIDO E COM PROGRESSO)
+    Executa o salto de versão, usando run_apt_command_with_progress.
+    Recebe as porcentagens inicial e final para este salto específico.
     """
     codename = codename_for_version(target_ver)
     if not codename:
@@ -1705,125 +1785,196 @@ def step_upgrade_to(target_ver: int) -> bool:
         return False
 
     print(f"\n=== INICIANDO SALTO DE VERSÃO PARA DEBIAN {target_ver} ({codename}) ===")
+    update_custom_gui(f"!!PERCENT!!:{int(step_start_progress)}")
 
-    # --- Configuração do Ambiente e DPBKG ---
-    # Usamos o mesmo método do run_robust_upgrade para evitar prompts de conffiles
+    # --- Preparação (~10% do *intervalo* deste passo) ---
+    prep_progress_share = 0.10
+    prep_end_step_percent = step_start_progress + (step_end_progress - step_start_progress) * prep_progress_share
+
+    update_custom_gui(f"Preparando para atualizar para Debian {target_ver}...")
+    preemptive_root_cleanup()
+    # --- CORREÇÃO: Capturar o retorno de quarantine_third_party_sources ---
+    quarantined_sources = quarantine_third_party_sources() 
+    quarantine_ocsinventory_agent()
+    try:
+        purge_old_kernels(keep_n=1); free_boot_space(900)
+    except Exception as e:
+        print(f"[AVISO] Limpeza prévia /boot: {e}")
+    update_custom_gui(f"!!PERCENT!!:{int(prep_end_step_percent)}")
+
     env = os.environ.copy()
     env["DEBIAN_FRONTEND"] = "noninteractive"
-    
+    env["LC_ALL"] = "C.UTF-8"
+
+    # Config non-interactive (como antes)
     dpkg_config_content = "force-confold\nforce-confdef\n"
     config_dir = tempfile.mkdtemp()
     config_file_path = os.path.join(config_dir, "99-auto-upgrade-no-prompt")
-    with open(config_file_path, 'w') as f:
-        f.write(dpkg_config_content)
-
+    with open(config_file_path, 'w') as f: f.write(dpkg_config_content)
     apt_options = [
         '-o', f'Dir::Etc::parts={config_dir}',
-        '-o', 'APT::List-Changes::Send-Emails=false',
-        '-y' # Sempre assume "Sim" para as perguntas do apt
+        '-o', 'APT::List-Changes::Send-Emails=false'
     ]
 
     try:
-        # 1. Altera o sources.list para a nova versão
-        if not write_canonical_sources(codename):
-            return False # Falha ao escrever sources
+        if not write_canonical_sources(codename): return False
 
-        # 2. apt update (NÃO AUTENTICADO)
-        # É ESSENCIAL rodar o update permitindo que ele falhe na validação GPG.
-        # Usamos --allow-insecure-repositories e --allow-releaseinfo-change.
-        print("\n[FASE 1/5] Executando apt update (permitindo não-autenticado)...")
-        cmd_update_insecure = ["apt", "update", 
-                               "--allow-insecure-repositories", 
-                               "--allow-releaseinfo-change"]
-        subprocess.run(cmd_update_insecure, env=env, check=True)
-        print("Update inicial concluído (para encontrar o novo keyring).")
+        # --- Fases de preparação do APT (~15% do *intervalo* deste passo) ---
+        apt_prep_progress_share = 0.15
+        apt_prep_end_step_percent = prep_end_step_percent + (step_end_progress - step_start_progress) * apt_prep_progress_share
 
-        # 3. Instala o novo Keyring (NÃO AUTENTICADO)
-        # Agora que o apt conhece os pacotes do bookworm, instalamos o novo keyring.
-        # Isso dará ao apt as chaves para confiar no repositório.
-        print("\n[FASE 2/5] Instalando novo debian-archive-keyring (permitindo não-autenticado)...")
-        cmd_install_keyring = ["apt", "install", "debian-archive-keyring"] + apt_options + ["--allow-unauthenticated"]
-        subprocess.run(cmd_install_keyring, env=env, check=True)
-        print("Novo keyring instalado.")
+        update_custom_gui("Configurando repositórios e chaves...")
+        # Usar auto_respond aqui, são comandos rápidos
+        auto_respond_command("apt update --allow-insecure-repositories --allow-releaseinfo-change" + " " + " ".join(apt_options), env=env, timeout=900)
+        auto_respond_command("apt install -y --allow-unauthenticated debian-archive-keyring" + " " + " ".join(apt_options), env=env, timeout=600)
+        auto_respond_command("apt update --allow-releaseinfo-change" + " " + " ".join(apt_options), env=env, timeout=900)
+        update_custom_gui(f"!!PERCENT!!:{int(apt_prep_end_step_percent)}")
 
-        # 4. apt update (SEGURO)
-        # Agora que temos o keyring, rodamos o update novamente. Desta vez, ele será
-        # validado com sucesso e será seguro.
-        print("\n[FASE 3/5] Executando apt update (modo seguro)...")
-        cmd_update_secure = ["apt", "update", "--allow-releaseinfo-change"]
-        subprocess.run(cmd_update_secure, env=env, check=True)
-        print("Update seguro concluído.")
+        # --- Fase da Atualização Principal (apt full-upgrade) (~65% do *intervalo*) ---
+        upgrade_progress_share = 0.65
+        upgrade_start_step_percent = apt_prep_end_step_percent
+        upgrade_end_step_percent = upgrade_start_step_percent + (step_end_progress - step_start_progress) * upgrade_progress_share
 
-        # 5. A Atualização Principal (Finalmente)
-        # Com o sistema pronto e confiando nos repositórios, fazemos o upgrade.
-        # Isso irá resolver o estado quebrado de libc6/libc-bin.
-        print("\n[FASE 4/5] Executando apt full-upgrade (o salto de versão)...")
-        cmd_full_upgrade = ["apt", "full-upgrade"] + apt_options
-        subprocess.run(cmd_full_upgrade, env=env, check=True)
-        print("Salto de versão completo.")
+        update_custom_gui(f"Iniciando atualização principal para Debian {target_ver}...")
+        # USA A NOVA FUNÇÃO AQUI! Note que removemos o '-q'
+        cmd_full_upgrade_list = ["apt", "-y", "full-upgrade"] + apt_options
+        upgrade_ok = run_apt_command_with_progress(
+            cmd_full_upgrade_list, env,
+            upgrade_start_step_percent,
+            upgrade_end_step_percent
+        )
 
-        # 6. Limpeza
-        print("\n[FASE 5/5] Executando apt autoremove para limpeza...")
-        cmd_autoremove = ["apt", "autoremove", "--purge"] + apt_options
-        subprocess.run(cmd_autoremove, env=env, check=True)
+        if not upgrade_ok:
+            update_custom_gui("Falha na atualização. Tentando reparo...")
+            print("\n[AVISO] O 'full-upgrade' inicial falhou. Tentando reparo e repetindo...")
+            # Usar auto_respond para reparo
+            auto_respond_command("dpkg --configure -a", env=env, timeout=1200)
+            auto_respond_command("apt --fix-broken install -y" + " " + " ".join(apt_options), env=env, timeout=1800)
 
-        print(f"✅ Upgrade para Debian {target_ver} ({codename}) concluído com sucesso.")
-        
-        # Verifica se realmente chegou lá
-        cur = get_debian_version()
-        print(f"[INFO] Versão após upgrade: {cur}")
-        return cur == target_ver
+            update_custom_gui(f"Repetindo atualização para Debian {target_ver}...")
+            # Tenta de novo com progresso
+            if not run_apt_command_with_progress(cmd_full_upgrade_list, env, upgrade_start_step_percent, upgrade_end_step_percent):
+                 print("\n❌ ERRO CRÍTICO: Falha no 'full-upgrade' mesmo após tentativa de reparo.")
+                 # Deixa a barra onde parou a segunda tentativa
+                 return False
+        # Progresso já foi atualizado para upgrade_end_step_percent
+
+        # --- Fase de Limpeza (~10% final do *intervalo*) ---
+        cleanup_start_step_percent = upgrade_end_step_percent
+        cleanup_end_step_percent = step_end_progress # Chega ao fim do intervalo do passo
+
+        update_custom_gui("Executando limpeza pós-upgrade...")
+        # Usar auto_respond, rápido
+        autoremove_cmd_str = "apt autoremove --purge -y"
+        # CORREÇÃO APLICADA AQUI: Removido o check=False
+        auto_respond_command(autoremove_cmd_str + " " + " ".join(apt_options), env=env, timeout=900)
+        update_custom_gui(f"!!PERCENT!!:{int(cleanup_end_step_percent)}") # Garante que chegou ao fim
+
+        print(f"✅ Passo de upgrade para Debian {target_ver} ({codename}) concluído.")
+        return True
 
     except Exception as e:
         print(f"\n❌ ERRO CRÍTICO DURANTE O SALTO DE VERSÃO: {e}")
-        print("Tentando executar 'dpkg --configure -a' e 'apt --fix-broken install' para recuperação...")
-        try:
-            subprocess.run(["dpkg", "--configure", "-a"], env=env)
-            subprocess.run(["apt", "--fix-broken", "install"] + apt_options, env=env)
-        except Exception as e2:
-            print(f"Comandos de recuperação também falharam: {e2}")
+        # Tenta atualizar a barra para onde parou antes da exceção
+        # (difícil saber exatamente, usar o início da fase atual)
+        # update_custom_gui(f"!!PERCENT!!:{int(upgrade_start_step_percent)}") # Ou outra estimativa
         return False
     finally:
-        # Garante que o diretório de config temporário seja sempre limpo
-        if os.path.exists(config_dir):
-            shutil.rmtree(config_dir)
+        print("[FINAL] Reativando repositórios de terceiros...")
+        # --- CORREÇÃO: Usar a variável 'quarantined_sources' definida no início ---
+        for disabled, original in quarantined_sources.items(): 
+            try:
+                if os.path.exists(disabled):
+                    shutil.move(disabled, original)
+            except Exception as e:
+                print(f"[AVISO] Falha ao reativar '{original}': {e}")
+        # --- CORREÇÃO: Verificar se 'config_dir' foi definido antes de remover ---
+        if 'config_dir' in locals() and os.path.exists(config_dir): 
+             shutil.rmtree(config_dir)
 
-def ensure_debian_stepwise_to_13() -> bool:
+def quarantine_brother_drivers():
     """
-    (VERSÃO 2 - SIMPLIFICADA)
-    Garante que o sistema chegue ao Debian 13, executando os saltos de versão
-    necessários um a um, usando a nova e robusta função 'step_upgrade_to'.
+    Move arquivos de driver da Brother conhecidos por causar avisos do ldconfig
+    durante upgrades para um diretório de backup.
     """
-    print("\n=== Iniciando verificação de upgrade passo a passo para o Debian 13 ===")
+    print("\n[QUARENTENA] Verificando e colocando em quarentena drivers da Brother problemáticos...")
+    problematic_files = [
+        "/lib/libbrcolm2.so.1",
+        "/lib/libbrscandec2.so.1"
+    ]
+    backup_dir = "/opt/brother_driver_backup"
+    
+    moved_count = 0
+    try:
+        os.makedirs(backup_dir, exist_ok=True)
+        for file_path in problematic_files:
+            if os.path.exists(file_path):
+                backup_path = os.path.join(backup_dir, os.path.basename(file_path))
+                print(f"Movendo '{file_path}' para '{backup_path}'")
+                shutil.move(file_path, backup_path)
+                moved_count += 1
+    except Exception as e:
+        print(f"[AVISO] Não foi possível colocar em quarentena os drivers da Brother: {e}")
+        
+    if moved_count > 0:
+        print("[QUARENTENA] Drivers da Brother movidos com sucesso.")
 
-    # Garante que as respostas automáticas para reinício de serviços estejam ativas
-    ensure_auto_restart_services_yes()
+def ensure_debian_stepwise_to_12() -> bool:
+    """
+    (MODIFICADO PARA PROGRESSO) Garante Debian 12, passo a passo,
+    distribuindo a porcentagem entre os saltos.
+    """
+    print("\n=== Iniciando verificação de upgrade passo a passo para o Debian 12 ===")
+
+    base_progress = 5 
+    target_progress = 70 # Onde queremos chegar após o(s) salto(s)
+
+    quarantine_brother_drivers(); ensure_auto_restart_services_yes()
 
     cur = get_debian_version()
-    if cur is None:
-        print("Não foi possível detectar a versão do Debian. Abortando.")
-        return False
-
-    if cur >= 13:
-        print("Sistema já está no Debian 13 ou superior. Pulando saltos de versão.")
+    if cur is None: return False
+    if cur >= 12:
+        update_custom_gui(f"!!PERCENT!!:{target_progress}") 
         return True
 
-    # Loop para os saltos de versão
-    for target in (12, 13):
-        cur = get_debian_version() or cur # Atualiza a versão atual a cada loop
-        
+    steps_needed = []
+    if cur < 11: steps_needed.append(11)
+    if cur < 12: steps_needed.append(12)
+
+    num_steps = len(steps_needed)
+    progress_per_step = (target_progress - base_progress) / num_steps if num_steps > 0 else 0
+    last_step_end_progress = base_progress # Inicia no progresso base
+
+    for i, target in enumerate(steps_needed):
+        cur = get_debian_version() or cur 
         if cur < target:
-            # Chama a nossa nova função de salto de versão robusta
-            if not step_upgrade_to(target):
-                print(f"\n[ERRO FATAL] Falha no passo de atualização para a versão {target}. Abortando.")
+            step_start_progress = last_step_end_progress # Começa onde o anterior parou
+            step_end_progress = step_start_progress + progress_per_step
+
+            print(f"\n>>> INICIANDO UPGRADE DE DEBIAN {cur} PARA {target} <<<")
+
+            # Chama step_upgrade_to passando os limites de progresso
+            if not step_upgrade_to(target, step_start_progress, step_end_progress): # Passa os limites
+                print(f"\n[ERRO FATAL] Falha no passo para a versão {target}. Abortando.")
+                # Deixa a barra onde o step_upgrade_to parou (ou tentou parar)
                 return False
 
+            print(f">>> UPGRADE PARA DEBIAN {target} CONCLUÍDO COM SUCESSO <<<\n")
+            last_step_end_progress = step_end_progress # Atualiza para o próximo loop
+        else:
+             # Se pulou um passo (já estava na versão), avança o progresso mesmo assim
+             last_step_end_progress += progress_per_step
+
+
     final_ver = get_debian_version()
-    if final_ver == 13:
-        print("✅ Upgrade passo a passo para Debian 13 concluído.")
+    if final_ver == 12:
+        print("✅ Upgrade passo a passo para Debian 12 concluído.")
+        update_custom_gui(f"!!PERCENT!!:{target_progress}") # Garante que atingiu o alvo final
         return True
     else:
-        print(f"ERRO: Upgrade finalizado, mas a versão final detectada é {final_ver} (esperado: 13).")
+        print(f"ERRO: Versão final detectada é {final_ver} (esperado: 12).")
+        # Deixa a barra onde o último passo terminou
+        update_custom_gui(f"!!PERCENT!!:{int(last_step_end_progress)}") 
         return False
 
 def download_chrome_deb_resume(dest: str, tries: int = 8) -> bool:
@@ -1884,37 +2035,45 @@ def enable_dl_google_lists(changed_map: dict):
 
 def install_chrome_stable_quick(reenable: bool = False) -> bool:
     """
-    Instala RAPIDAMENTE o Chrome estável disponível:
-      - desabilita listas do Google (evita travar em 'InRelease')
-      - baixa o stable_current_amd64.deb direto (canal estável)
-      - instala com dpkg e corrige deps
-      - opcionalmente reativa listas no final
+    (VERSÃO CORRIGIDA E ROBUSTA)
+    Instala o Chrome em dois passos explícitos: dpkg primeiro, depois apt -f install.
     """
     print("\n=== Instalação rápida do Chrome estável (canal stable) ===")
     changed = disable_dl_google_lists()
-    env = os.environ.copy(); env["DEBIAN_FRONTEND"] = "noninteractive"
+    env = os.environ.copy()
+    env["DEBIAN_FRONTEND"] = "noninteractive"
+    env["LC_ALL"] = "C.UTF-8"
 
     deb = "/tmp/google-chrome-stable_current_amd64.deb"
     if not _download_chrome_deb_via_resolve(deb, tries_per_ip=2, total_rounds=2):
         print("Falha no download direto do .deb do Chrome (mesmo com resolve).")
-        # último recurso: wget -c
         if not download_chrome_deb_resume(deb, tries=4):
             print("Falha também com wget -c.")
             if reenable:
                 enable_dl_google_lists(changed)
             return False
 
-    ok = auto_respond_command(
-        f"dpkg -i '{deb}' || apt-get -f install -y",
-        env=env, timeout=1200, log_path=CHROME_LOG
-    )
-    if not ok:
-        print("dpkg/apt não conseguiu concluir a instalação do Chrome.")
+    # --- LÓGICA DE INSTALAÇÃO MODIFICADA (MAIS ROBUSTA) ---
+
+    # PASSO 1: Tenta instalar com dpkg. É esperado que falhe se houver dependências faltando.
+    install_cmd = f"dpkg -i {deb}"
+    # Não precisamos verificar o resultado de imediato, pois o próximo passo corrige os erros.
+    # Executamos o comando e seguimos em frente.
+    auto_respond_command(install_cmd, env=env, timeout=600, log_path=CHROME_LOG)
+
+    # PASSO 2: Executa 'apt-get -f install' para baixar dependências e concluir a configuração.
+    # Este comando conserta a instalação iniciada pelo dpkg.
+    print("Executando 'apt-get -f install' para corrigir dependências e finalizar a instalação...")
+    fix_cmd = "apt-get -f install -y"
+    ok_fix = auto_respond_command(fix_cmd, env=env, timeout=1200, log_path=CHROME_LOG)
+
+    if not ok_fix:
+        print("O comando 'apt-get -f install' falhou. Não foi possível instalar o Chrome.")
         if reenable:
             enable_dl_google_lists(changed)
         return False
 
-    # Verifica versão instalada (qualquer estável serve)
+    # Verificação final para garantir que o Chrome está instalado
     cur = get_chrome_version_tuple()
     if cur == (0, 0, 0):
         print("Chrome não foi detectado após a instalação.")
@@ -1947,6 +2106,8 @@ def ensure_firefox_esr_min_128():
         check_and_clear_apt_locks()
         env = os.environ.copy()
         env["DEBIAN_FRONTEND"] = "noninteractive"
+        # MODIFICAÇÃO: Adicionado LC_ALL para evitar erros de locale
+        env["LC_ALL"] = "C.UTF-8"
 
         # Em Debian 13 o pacote certo é firefox-esr
         auto_respond_command("apt update", env=env, timeout=600)
@@ -2072,48 +2233,39 @@ def _download_chrome_deb_via_resolve(dest: str, tries_per_ip: int = 2, total_rou
     return False
 
 def install_google_earth_stable_quick(reenable: bool = False) -> bool:
-    """
-    Instala RAPIDAMENTE o Google Earth (canal stable) sem depender do APT do Google:
-      - desabilita as listas do Google (evita travas em InRelease)
-      - baixa o .deb direto com retomada
-      - instala com dpkg e corrige dependências
-      - não reativa as listas por padrão (reenable=False)
-    """
     print("\n=== Instalação rápida do Google Earth (stable) ===")
     changed = disable_dl_google_lists()
     env = os.environ.copy(); env["DEBIAN_FRONTEND"] = "noninteractive"
+    env["LC_ALL"] = "C.UTF-8"
 
     url = "https://dl.google.com/dl/linux/direct/google-earth-pro-stable_current_amd64.deb"
     deb = "/tmp/google-earth-pro-stable_current_amd64.deb"
 
     ensure_net_download_tools()
 
-    ok_dl = False
+    # --- CORREÇÃO: Lógica de verificação de download melhorada ---
     for i in range(1, 5):
         print(f"Baixando (tentativa {i}/4) {url} …")
         cmd = (
             f"wget --no-proxy --inet4-only --continue "
             f"--timeout=45 --read-timeout=45 --tries=2 --waitretry=5 --retry-connrefused "
-            f"--no-http-keep-alive --limit-rate=300k --progress=dot:giga "
             f"-O '{deb}' '{url}'"
         )
-        rc = subprocess.run(cmd, shell=True).returncode
+        subprocess.run(cmd, shell=True)
         try:
-            # Earth ~90–100 MB; considera OK >= 80 MB
-            if rc == 0 and os.path.exists(deb) and os.path.getsize(deb) > 80 * 1024 * 1024:
-                ok_dl = True
-                break
+            if os.path.exists(deb) and os.path.getsize(deb) > 80 * 1024 * 1024:
+                print("Download do Google Earth .deb bem-sucedido ou já existente.")
+                break 
         except Exception:
             pass
         time.sleep(2)
-
-    if not ok_dl:
+    
+    if not (os.path.exists(deb) and os.path.getsize(deb) > 80 * 1024 * 1024):
         print("Falha ao baixar o .deb do Google Earth.")
-        if reenable:
-            enable_dl_google_lists(changed)
+        if reenable: enable_dl_google_lists(changed)
         return False
 
-    ok = auto_respond_command(
+    ok_install = auto_respond_command(
         f"dpkg -i '{deb}' || apt-get -f install -y",
         env=env, timeout=1200, log_path=EARTH_LOG
     )
@@ -2122,10 +2274,10 @@ def install_google_earth_stable_quick(reenable: bool = False) -> bool:
         print("[OK] Google Earth instalado/atualizado (stable).")
     else:
         print("Google Earth não foi detectado após a instalação.")
+        ok_install = False
 
-    if reenable:
-        enable_dl_google_lists(changed)
-    return ok
+    if reenable: enable_dl_google_lists(changed)
+    return ok_install
 
 def install_assinador_no_autostart() -> bool:
     """
@@ -2138,6 +2290,8 @@ def install_assinador_no_autostart() -> bool:
 
     env = os.environ.copy()
     env["DEBIAN_FRONTEND"] = "noninteractive"
+    # MODIFICAÇÃO: Adicionado LC_ALL para evitar erros de locale
+    env["LC_ALL"] = "C.UTF-8"
 
     policy = "/usr/sbin/policy-rc.d"
     created_policy = False
@@ -2273,6 +2427,8 @@ def try_repair_assinador_serpro() -> bool:
 
     env = os.environ.copy()
     env["DEBIAN_FRONTEND"] = "noninteractive"
+    # MODIFICAÇÃO: Adicionado LC_ALL para evitar erros de locale
+    env["LC_ALL"] = "C.UTF-8"
 
     print("\n[INFO] Tentando reparar repositório/pacote Assinador SERPRO...")
 
@@ -2398,6 +2554,8 @@ def run_quick_update_13() -> bool:
     env["UCF_FORCE_CONFFOLD"] = "1"
     env["UCF_FORCE_CONFFNEW"] = "0"
     env["UCF_FORCE_CONFFMISS"] = "1"
+    # MODIFICAÇÃO: Adicionado LC_ALL para evitar erros de locale
+    env["LC_ALL"] = "C.UTF-8"
 
     def _run(cmd: str, timeout: int) -> bool:
         print(f"\nExecutando (subprocess): {cmd}")
@@ -2572,6 +2730,8 @@ def finalize_python3_stack_post13():
     env = os.environ.copy()
     env["DEBIAN_FRONTEND"] = "noninteractive"
     env["NEEDRESTART_MODE"] = "a"
+    # MODIFICAÇÃO: Adicionado LC_ALL para evitar erros de locale
+    env["LC_ALL"] = "C.UTF-8"
 
     cmds = [
         "dpkg --configure -a",
@@ -2828,31 +2988,22 @@ X-Cinnamon-Autostart-enabled=true
 
 def _spawn_tray_in_active_gui_session(script_path: str):
     """
-    Localiza a sessão gráfica ativa via loginctl e executa o tray como o USUÁRIO dessa sessão,
-    com DISPLAY e DBUS corretos. Funciona em Xorg; em Wayland costuma bastar o DBUS.
+    Localiza a sessão gráfica ativa via loginctl e executa o tray como o USUÁRIO dessa sessão.
     """
     sess_info = _detect_active_gui_session()
     if not sess_info:
-        # Sem sessão gráfica detectada agora: o autostart cuidará no próximo login
         return
 
     user, uid, display, wayland_display = sess_info
-
     xdg_runtime = f"/run/user/{uid}"
     dbus_addr = f"unix:path={xdg_runtime}/bus"
 
     env_parts = [f"XDG_RUNTIME_DIR={xdg_runtime}", f"DBUS_SESSION_BUS_ADDRESS={dbus_addr}"]
-    if display:
-        env_parts.append(f"DISPLAY={display}")
-    if wayland_display:
-        env_parts.append(f"WAYLAND_DISPLAY={wayland_display}")
-
+    if display: env_parts.append(f"DISPLAY={display}")
+    if wayland_display: env_parts.append(f"WAYLAND_DISPLAY={wayland_display}")
     env_str = " ".join(env_parts)
 
-    # runuser é preferível a sudo em scripts não interativos
-    cmd = (
-        f"runuser -l {user} -c \"{env_str} setsid -f python3 '{script_path}' >/dev/null 2>&1 &\""
-    )
+    cmd = f"su - {shlex.quote(user)} -c \"{env_str} setsid -f python3 '{script_path}' >/dev/null 2>&1 &\""
     _run_quiet(cmd)
 
 def _detect_active_gui_session():
@@ -3064,7 +3215,7 @@ def ensure_auto_restart_services_yes() -> bool:
         # 2) Forçar APT/Dpkg a não parar em conffiles
         os.makedirs("/etc/apt/apt.conf.d", exist_ok=True)
         with open("/etc/apt/apt.conf.d/90auto-restart", "w") as f:
-            f.write('Dpkg::Options {"--force-confdef";"--force-confold";};\n')
+            f.write('DPkg::Options {"--force-confdef";"--force-confold";};\n')
             f.write('APT::Get::Assume-Yes "true";\n')
 
         # 3) needrestart: reinício automático ('a' = auto)
@@ -3090,33 +3241,249 @@ def ensure_auto_restart_services_yes() -> bool:
         print(f"[AVISO] ensure_auto_restart_services_yes falhou: {e}")
         return False
 
-# ================== POPUP GUI (MATE) – ZENITY via FIFO (robusto) ==================
 
-import os, re, shlex, subprocess, time, shutil
+# ================== ALERTA PERSONALIZADO COM GTK3 ==================
+# (Importações Gtk, sys, os, threading, shlex, subprocess, time)
+# ... (outras importações)
+import gi
+try:
+    gi.require_version('Gtk', '3.0')
+    from gi.repository import Gtk, GLib, Pango, Gdk
+except (ValueError, ImportError):
+    pass
 
-# estado global do UI
-_POP = globals().get("_POP", {
-    "env": {},
-    "user": None,
-    "uid": None,
+import sys
+import os
+import threading
+import shlex
+import subprocess
+import time
+
+# --- A Janela Gráfica (MODIFICADA) ---
+
+class UpgradeWindow(Gtk.Window):
+    def __init__(self):
+        super().__init__(title="Assistente de Atualização")
+        
+        dark_gray = Gdk.RGBA(60/255.0, 60/255.0, 60/255.0, 1.0)
+        white = Gdk.RGBA(1.0, 1.0, 1.0, 1.0)
+        self.override_background_color(Gtk.StateFlags.NORMAL, dark_gray)
+
+        self.set_position(Gtk.WindowPosition.CENTER)
+        # Aumentei um pouco a altura para acomodar a barra de progresso
+        self.set_default_size(700, 350) 
+        self.set_border_width(24)
+        self.set_resizable(False)
+        self.set_decorated(True)
+        self.set_keep_above(True)
+
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.add(vbox)
+
+        self.header_label = Gtk.Label()
+        header_markup = "<span size='xx-large' weight='bold' color='#5dade2'>ATUALIZAÇÃO EM ANDAMENTO</span>"
+        self.header_label.set_markup(header_markup)
+        vbox.pack_start(self.header_label, False, False, 0)
+
+        # Mensagem inicial sobre a duração
+        initial_status = ("Iniciando o processo...\n"
+                          "<i>Isso pode levar de vários minutos a algumas horas.</i>")
+        self.status_label = Gtk.Label(label=initial_status)
+        self.status_label.set_use_markup(True) # Para interpretar o <i></i>
+        self.status_label.override_color(Gtk.StateFlags.NORMAL, white)
+        self.status_label.set_line_wrap(True)
+        self.status_label.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+        self.status_label.set_justify(Gtk.Justification.CENTER)
+        # Reduzido o espaço vertical para o status caber melhor
+        vbox.pack_start(self.status_label, False, False, 5) 
+
+        self.spinner = Gtk.Spinner()
+        self.spinner.set_size_request(48, 48)
+        self.spinner.override_color(Gtk.StateFlags.NORMAL, white)
+        # Reduzido o espaço vertical para o spinner
+        vbox.pack_start(self.spinner, False, False, 5) 
+
+        # --- ADICIONADO: Barra de Progresso ---
+        self.progress_bar = Gtk.ProgressBar()
+        self.progress_bar.set_text("0%")
+        self.progress_bar.set_show_text(True)
+        # Adiciona margem acima da barra
+        self.progress_bar.set_margin_top(15) 
+        vbox.pack_start(self.progress_bar, False, False, 0)
+        # --- FIM DA ADIÇÃO ---
+
+        vbox.pack_start(Gtk.Separator(orientation=Gtk.Orientation.HORIZONTAL, margin_top=15, margin_bottom=5), False, False, 0)
+        
+        self.footer_label = Gtk.Label()
+        self.footer_label.override_color(Gtk.StateFlags.NORMAL, white)
+        footer_text = (
+            "<i><b>NÃO DESLIGUE O COMPUTADOR!</b>\n"
+            "O sistema pode ficar lento durante a atualização. Por favor, aguarde.</i>"
+        )
+        self.footer_label.set_markup(footer_text)
+        vbox.pack_start(self.footer_label, False, False, 0)
+        
+        # --- REMOVIDO: Botão de Reiniciar ---
+        # self.restart_button = Gtk.Button(...)
+        # --- FIM DA REMOÇÃO ---
+
+    def update_status(self, text):
+        # Atualiza apenas o texto de status, sem negrito por padrão
+        GLib.idle_add(self.status_label.set_markup, f"{text}") 
+
+    # --- ADICIONADO: Função para atualizar a barra de progresso ---
+    def update_progress(self, percentage):
+        fraction = float(percentage) / 100.0
+        GLib.idle_add(self.progress_bar.set_fraction, fraction)
+        GLib.idle_add(self.progress_bar.set_text, f"{int(percentage)}%")
+    # --- FIM DA ADIÇÃO ---
+
+    def start_animation(self):
+        GLib.idle_add(self.spinner.start)
+
+    def close_window(self):
+        GLib.idle_add(Gtk.main_quit)
+
+    # --- REMOVIDO: Handler do botão de reiniciar ---
+    # def on_restart_clicked(self, widget):
+    # --- FIM DA REMOÇÃO ---
+
+    # Função para lidar com o estado final (Modificada)
+    def show_final_state(self, message, success=True):
+        if success:
+            header_markup = "<span size='xx-large' weight='bold' color='#2ecc71'>ATUALIZAÇÃO CONCLUÍDA</span>"
+            # Define o progresso como 100% no sucesso
+            self.update_progress(100) 
+        else:
+            header_markup = "<span size='xx-large' weight='bold' color='#e74c3c'>ATUALIZAÇÃO FALHOU</span>"
+            # Deixa a barra onde parou ou pode setar um valor específico se quiser
+        
+        GLib.idle_add(self.header_label.set_markup, header_markup)
+        GLib.idle_add(self.spinner.stop)
+        GLib.idle_add(self.spinner.hide)
+        GLib.idle_add(self.status_label.set_markup, f"<big>{message}</big>")
+        GLib.idle_add(self.footer_label.hide)
+
+        # --- REMOVIDO: Mostrar o botão de reiniciar ---
+        # GLib.idle_add(self.restart_button.show)
+        # --- FIM DA REMOÇÃO ---
+
+# Função que executa a GUI (MODIFICADA para entender porcentagem)
+def run_gui_app(fifo_path):
+    win = UpgradeWindow()
+    win.connect("destroy", Gtk.main_quit)
+    
+    win.show_all()
+    # O botão de reiniciar foi removido, então não precisamos mais escondê-lo aqui.
+    # A barra de progresso já é visível por padrão.
+    win.start_animation()
+
+    def fifo_listener():
+        should_quit = False 
+        try:
+            with open(fifo_path, 'r') as fifo:
+                for line in fifo:
+                    line = line.strip()
+                    
+                    if line == "!!QUIT!!":
+                        should_quit = True 
+                        break
+                    
+                    # Chama show_final_state com as mensagens finais
+                    elif line.startswith("!!FINAL_SUCCESS!!:"):
+                        msg = line.replace("!!FINAL_SUCCESS!!:", "", 1)
+                        win.show_final_state(GLib.markup_escape_text(msg), success=True)
+                    
+                    elif line.startswith("!!FINAL_FAIL!!:"):
+                        msg = line.replace("!!FINAL_FAIL!!:", "", 1)
+                        win.show_final_state(GLib.markup_escape_text(msg), success=False)
+
+                    # --- ADICIONADO: Lógica para porcentagem ---
+                    elif line.startswith("!!PERCENT!!:"):
+                        try:
+                            percent_str = line.replace("!!PERCENT!!:", "", 1)
+                            percent_val = int(float(percent_str)) # Converte para float e depois int
+                            if 0 <= percent_val <= 100:
+                                win.update_progress(percent_val)
+                            else:
+                                print(f"Porcentagem inválida recebida: {percent_val}")
+                        except ValueError:
+                            print(f"Erro ao converter porcentagem: {percent_str}")
+                    # --- FIM DA ADIÇÃO ---
+                        
+                    # Atualiza o status com mensagens normais
+                    elif line:
+                        # Escapa a mensagem para evitar problemas com markup
+                        win.update_status(GLib.markup_escape_text(line)) 
+        
+        except Exception as e:
+            print(f"Erro no listener do FIFO: {e}")
+            try:
+                win.show_final_state(f"Erro na comunicação com o script:\n{e}", success=False)
+            except:
+                pass 
+        
+        finally:
+            if should_quit:
+                win.close_window()
+            else:
+                print("Pipe fechado, mantendo a GUI ativa para estado final.")
+    
+    listener_thread = threading.Thread(target=fifo_listener, daemon=True)
+    listener_thread.start()
+
+    Gtk.main()
+
+_POP_GUI = {
+    "proc": None,
+    "fifo_path": f"/tmp/auto-upgrade-gui.{os.getpid()}.fifo",
     "writer": None,
-    "pidfile": "/run/pmjs-upgrade-ui.pid",
-    "fifo": "/run/pmjs-upgrade-ui.fifo",
-    "display": ":0",
-    "started": False,
-    "use": None,            # "yad" | "zenity"
-    "banner": ""
-})
+    "active": False
+}
 
-def _run(cmd, **kw):
-    return subprocess.run(cmd, shell=True, **kw)
+def start_custom_gui():
+    # Garante que as dependências da interface gráfica estão instaladas
+    _ensure_hostip_tray_dependencies()
+    
+    fifo_path = _POP_GUI["fifo_path"]
+    try:
+        if os.path.exists(fifo_path): os.remove(fifo_path)
+        os.mkfifo(fifo_path)
+    except Exception as e:
+        print(f"Falha ao criar FIFO para GUI: {e}")
+        return False
+    
+    script_path = os.path.abspath(sys.argv[0])
+    sess_info = _find_active_gui_session()
+    if not sess_info:
+        print("Não foi possível encontrar uma sessão gráfica ativa para o alerta.")
+        return False
+
+    user, uid, display = sess_info.get("user"), sess_info.get("uid"), sess_info.get("display", ":0")
+    xdg = f"/run/user/{uid}"
+    env_vars = f"DISPLAY={shlex.quote(display)} XDG_RUNTIME_DIR={shlex.quote(xdg)} DBUS_SESSION_BUS_ADDRESS=unix:path={xdg}/bus"
+    
+    # --- MODIFICAÇÃO AQUI ---
+    # Passamos o caminho exato do 'fifo' como um argumento para o script.
+    cmd = f"runuser -u {shlex.quote(user)} -- bash -lc '{env_vars} python3 {shlex.quote(script_path)} --run-gui {shlex.quote(fifo_path)}'"
+
+    try:
+        _POP_GUI["proc"] = subprocess.Popen(cmd, shell=True)
+        # Espera um pouco para a GUI iniciar e abrir o FIFO
+        time.sleep(1)
+        _POP_GUI["writer"] = open(fifo_path, 'w')
+        _POP_GUI["active"] = True
+        print("Interface gráfica personalizada iniciada.")
+        return True
+    except Exception as e:
+        print(f"Falha ao iniciar a GUI personalizada: {e}")
+        return False
 
 def _find_active_gui_session():
     """
     Descobre a sessão gráfica ativa (usuario, uid, display) usando systemd/loginctl.
     Retorna dict {'user','uid','display'} ou None.
     """
-    # 1) loginctl (melhor fonte)
     try:
         out = subprocess.check_output(
             "loginctl list-sessions --no-legend", shell=True, text=True, stderr=subprocess.STDOUT
@@ -3126,7 +3493,6 @@ def _find_active_gui_session():
             if not parts:
                 continue
             sess_id = parts[0]
-            # pega propriedades com nomes estáveis
             show = subprocess.check_output(
                 f"loginctl show-session {shlex.quote(sess_id)} "
                 "-p Active -p Type -p Display -p Remote -p User -p Name",
@@ -3137,29 +3503,16 @@ def _find_active_gui_session():
                 if "=" in s:
                     k, v = s.split("=", 1)
                     kv[k] = v
-            if kv.get("Active") != "yes":
+            if kv.get("Active") != "yes" or kv.get("Remote") == "yes":
                 continue
-            if kv.get("Remote") == "yes":
-                continue
-            # user "Name" = login, "User" = uid numérico
             user = kv.get("Name") or ""
             uid  = int(kv.get("User") or "0")
             if not user or user == "root" or uid <= 0:
                 continue
             disp = kv.get("Display") or ":0"
-            # sanity: existe um processo de sessão MATE?
-            try:
-                _ = subprocess.check_output(
-                    f"pgrep -u {shlex.quote(user)} -f '(^|/)mate-session'", shell=True, text=True
-                )
-            except subprocess.CalledProcessError:
-                # tudo bem — ainda assim tentamos
-                pass
             return {"user": user, "uid": uid, "display": disp}
     except Exception:
         pass
-
-    # 2) fallback: quem está no VT gráfico
     try:
         who = subprocess.check_output("who | awk 'NR==1{print $1}'", shell=True, text=True).strip()
         if who and who != "root":
@@ -3169,254 +3522,44 @@ def _find_active_gui_session():
         pass
     return None
 
-def _run_as_user(user, cmd, extra_env=None, detach=False):
-    """
-    Executa 'cmd' como o usuário gráfico, exportando DISPLAY/DBUS/XDG_RUNTIME_DIR.
-    """
-    uid = int(subprocess.check_output(f"id -u {shlex.quote(user)}", shell=True, text=True).strip())
-    xdg = f"/run/user/{uid}"
-    envparts = {
-        "DISPLAY": _POP["display"] or ":0",
-        "XDG_RUNTIME_DIR": xdg,
-        "DBUS_SESSION_BUS_ADDRESS": f"unix:path={xdg}/bus",
-        "GDK_BACKEND": "x11",
-    }
-    if extra_env:
-        envparts.update(extra_env)
-    exports = " ".join([f"{k}={shlex.quote(str(v))}" for k, v in envparts.items() if v])
+def update_custom_gui(message):
+    if not _POP_GUI["active"]: return
+    writer = _POP_GUI.get("writer")
+    if writer and not writer.closed:
+        try:
+            writer.write(message + '\n')
+            writer.flush()
+        except Exception as e:
+            print(f"Falha ao enviar mensagem para a GUI: {e}")
 
-    if detach:
-        # setsid + nohup, sem herdar terminal
-        wrapped = f"{exports} setsid bash -lc {shlex.quote(cmd)} </dev/null >/dev/null 2>&1 &"
+def stop_custom_gui(success=True, reason=None): # Adicionado 'reason=None'
+    if not _POP_GUI["active"]: return
+
+    final_message_body = "É recomendado reiniciar o computador."
+    # Adiciona a razão do erro à mensagem se houver falha e a razão for fornecida
+    if not success and reason:
+        final_message_body = f"Causa da falha: {reason}\n{final_message_body}"
+
+    if success:
+        header = "Atualização concluída com sucesso!"
+        update_custom_gui(f"!!FINAL_SUCCESS!!:{header}\n{final_message_body}")
     else:
-        wrapped = f"{exports} bash -lc {shlex.quote(cmd)}"
-
-    return _run(f"runuser -u {shlex.quote(user)} -- bash -lc {shlex.quote(wrapped)}")
-
-def start_upgrade_ui_zenity_progress(initial_text=None, title="ATUALIZAÇÃO REMOTA"):
-    """
-    Abre uma janela zenity --progress grande no DESKTOP DO USUÁRIO (não como root),
-    recebendo atualizações via FIFO. Guarda um writer global em _POP["writer"].
-    """
-    sess = _find_active_gui_session()
-    if not sess:
-        print("[AVISO] Sessão gráfica não encontrada; popup não será exibido.")
-        return False
-
-    _POP["user"] = sess["user"]
-    _POP["uid"] = sess["uid"]
-    _POP["display"] = sess["display"]
-
-    # banner fixo (com markup)
-    _POP["banner"] = 'NÃO DESLIGUE O PC!              Atualização remota em andamento…'
-
-    # prepara diretório e fifo
-    fifo = _POP["fifo"]
-    try:
-        os.makedirs(os.path.dirname(fifo), exist_ok=True)
-        if os.path.exists(fifo):
-            try:
-                os.remove(fifo)
-            except Exception:
-                pass
-        os.mkfifo(fifo, 0o666)
-        os.chmod(fifo, 0o666)
-    except Exception as e:
-        print(f"[AVISO] não consegui criar FIFO: {e}")
-        return False
-
-    # texto inicial = banner + (opcional) complemento
-    def _esc(s: str) -> str:
-        return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-    extra = _esc(initial_text) if initial_text else None
-    initial_markup = _POP["banner"] if not extra else f'{_POP["banner"]}\n{extra}'
-
-    # <<< PREPARA STRINGS ESCAPADAS (sem barras dentro do f-string) >>>
-    safe_title = title.replace('"', r'\"')
-    safe_text  = initial_markup.replace('"', r'\"')
-
-    cmd = (
-        f'echo $$ > {shlex.quote(_POP["pidfile"])}; '
-        f'cat {shlex.quote(fifo)} | '
-        'zenity --progress --width=900 --height=260 --percentage=0 '
-        '--auto-close --auto-kill --no-cancel '
-        f'--title="{safe_title}" '
-        f'--text="{safe_text}" --window-icon=warning'
-    )
-
-    rc = _run_as_user(_POP["user"], cmd, detach=True)
-    if rc.returncode != 0:
-        print("[AVISO] falha ao iniciar zenity no desktop do usuário.")
-        return False
-
-    # conecta ao FIFO (lado escritor)
-    import errno, time as _time
-    start = _time.time()
-    fd = None
-    while _time.time() - start < 8.0:
+        header = "Atualização concluída com erros."
+        update_custom_gui(f"!!FINAL_FAIL!!:{header}\n{final_message_body}")
+    
+    writer = _POP_GUI.get("writer")
+    if writer and not writer.closed:
         try:
-            fd = os.open(fifo, os.O_WRONLY | os.O_NONBLOCK)
-            break
-        except OSError as e:
-            if e.errno in (errno.ENXIO, errno.ENOENT):
-                _time.sleep(0.2)
-                continue
-            raise
-    if fd is None:
-        print("[AVISO] não consegui conectar ao FIFO do zenity.")
-        return False
-
-    _POP["writer"] = os.fdopen(fd, "w", buffering=1)
-    _POP["started"] = True
-
-    # seta 0% (texto já foi definido por --text)
-    try:
-        _POP["writer"].write("0\n")
-        _POP["writer"].flush()
-    except Exception:
-        pass
-    return True
-
-def zenity_progress_set(percent, message=None):
-    """
-    Atualiza a barra e mantém o BANNER fixo em vermelho + status atual.
-    """
-    w = _POP.get("writer")
-    if not w:
-        return False
-
-    def _esc(s: str) -> str:
-        return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-
-    try:
-        p = max(0, min(100, int(percent)))
-        if message is not None:
-            # sempre mostra o banner + a mensagem atual
-            combined = f'{_POP.get("banner", "")}\n{_esc(str(message))}'
-            w.write("# " + combined + "\n")
-        w.write(f"{p}\n")
-        w.flush()
-        return True
-    except Exception as e:
-        print(f"[AVISO] falha ao escrever no FIFO do zenity: {e}")
-        return False
-
-def end_upgrade_ui_zenity(success=True):
-    """
-    Fecha a barra e mostra uma caixa final (como o usuário). Limpa FIFO/PID.
-    """
-    # tenta finalizar progress
-    try:
-        if _POP.get("writer"):
-            try:
-                zenity_progress_set(100, "Concluindo…")
-            except Exception:
-                pass
-            try:
-                _POP["writer"].close()
-            except Exception:
-                pass
-            _POP["writer"] = None
-    except Exception:
-        pass
-
-    # janela final (executa como usuário, sem precisar de DISPLAY do root)
-    if _POP.get("user"):
-        txt = ("Atualização concluída.\n\nReinicie o computador para finalizar."
-               if success else
-               "Concluído com avisos/erros.\n\nReinicie e verifique os logs.")
-        txt_q = txt.replace('"', '\\"')
-        _run_as_user(
-            _POP["user"],
-            f'zenity --info --width=820 --height=260 --window-icon=warning '
-            f'--title="ATUALIZAÇÃO REMOTA" --text="{txt_q}"',
-            detach=True
-        )
-
-    # encerra processo do zenity (best-effort) e limpa
-    try:
-        if os.path.exists(_POP["pidfile"]):
-            try:
-                pid = open(_POP["pidfile"]).read().strip()
-                if pid.isdigit():
-                    _run(f"kill -TERM {pid} 2>/dev/null || true")
-            finally:
-                try: os.remove(_POP["pidfile"])
-                except Exception: pass
-    except Exception:
-        pass
-    try:
-        if os.path.exists(_POP["fifo"]):
-            os.remove(_POP["fifo"])
-    except Exception:
-        pass
-    _POP["started"] = False
-
-def progress_phase_run_zenity(label, cmd_or_callable, start_pct, end_pct, poll_interval=1.0):
-    """
-    Executa uma fase e anima porcentagem entre start_pct..end_pct.
-    cmd_or_callable: string shell OU função sem args.
-    """
-    start_pct = int(start_pct); end_pct = max(int(end_pct), start_pct)
-    zenity_progress_set(start_pct, label)
-
-    # shell
-    if isinstance(cmd_or_callable, str):
-        try:
-            proc = subprocess.Popen(cmd_or_callable, shell=True,
-                                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
-        except Exception as e:
-            print(f"[ERRO] iniciar '{label}': {e}")
-            zenity_progress_set(start_pct, f"{label} — erro ao iniciar")
-            return False
-
-        cur = start_pct
-        last = time.time()
-        seen = None
-        while True:
-            line = proc.stdout.readline()
-            if line == "" and proc.poll() is not None:
-                break
-            if line:
-                m = re.search(r'(\d{1,3})\s*%', line)
-                if m:
-                    raw = max(0, min(100, int(m.group(1))))
-                    mapped = start_pct + (end_pct - start_pct) * raw // 100
-                    seen = mapped
-                    zenity_progress_set(mapped, label)
-            if time.time() - last >= poll_interval:
-                last = time.time()
-                if seen is None and cur < end_pct - 1:
-                    cur += 1
-                    zenity_progress_set(cur, label)
-
-        ok = (proc.returncode == 0)
-        zenity_progress_set(end_pct, f"{label} — concluído" if ok else f"{label} — falhou")
-        return ok
-
-    # função Python
-    import threading
-    state = {"done": False, "ok": False}
-    def runner():
-        try:
-            r = cmd_or_callable()
-            state["ok"] = (r is None or r is True or r == 0)
-        except Exception as e:
-            print(f"[ERRO] fase '{label}': {e}")
-            state["ok"] = False
-        finally:
-            state["done"] = True
-
-    t = threading.Thread(target=runner, daemon=True); t.start()
-    cur = start_pct
-    while not state["done"]:
-        if cur < end_pct - 1:
-            cur += 1
-            zenity_progress_set(cur, label)
-        time.sleep(poll_interval)
-
-    zenity_progress_set(end_pct, f"{label} — concluído" if state["ok"] else f"{label} — falhou")
-    return state["ok"]
+            writer.flush()
+            writer.close()
+        except Exception: pass
+    
+    if os.path.exists(_POP_GUI["fifo_path"]):
+        try: os.remove(_POP_GUI["fifo_path"])
+        except Exception: pass
+    
+    _POP_GUI["active"] = False
+    print("Interface gráfica finalizada (deixada na tela para o usuário).")
 
 def quarantine_b43_installer():
     """
@@ -3451,71 +3594,103 @@ def quarantine_b43_installer():
     except Exception:
         pass
 
+def force_repair_broken_kernel() -> bool:
+    """
+    Tenta uma recuperação forçada de pacotes de kernel que falharam na configuração.
+    """
+    print("\n[REPARO FORÇADO] Procurando e purgando pacotes de kernel quebrados...")
+    env = os.environ.copy()
+    env["DEBIAN_FRONTEND"] = "noninteractive"
+    env["LC_ALL"] = "C.UTF-8"
+    
+    try:
+        # Comando para encontrar pacotes 'linux-image' que não estão no estado 'ii' (instalado)
+        # Estados problemáticos comuns: iF (falha na config), iU (descompactado), rc (removido, mas configs ficam)
+        find_cmd = "dpkg -l | grep '^.[^i]i.*linux-image-' | awk '{print $2}'"
+        result = subprocess.run(find_cmd, shell=True, capture_output=True, text=True, env=env)
+        
+        broken_packages = result.stdout.strip().split()
+        
+        if not broken_packages:
+            print("[REPARO FORÇADO] Nenhum pacote de kernel quebrado encontrado. Pulando purga forçada.")
+            return True
+
+        print(f"[REPARO FORÇADO] Pacotes de kernel quebrados encontrados: {' '.join(broken_packages)}")
+        
+        for pkg in broken_packages:
+            print(f"[REPARO FORÇADO] Purgando à força o pacote: {pkg}")
+            purge_cmd = ["dpkg", "--purge", "--force-all", pkg]
+            subprocess.run(purge_cmd, env=env)
+            
+        # Tenta limpar o estado do sistema após a purga forçada
+        print("[REPARO FORÇADO] Limpando o sistema com apt --fix-broken install...")
+        subprocess.run(["apt", "-y", "--fix-broken", "install"], env=env)
+        
+        print("[REPARO FORÇADO] Concluído.")
+        return True
+        
+    except Exception as e:
+        print(f"[AVISO] Ocorreu um erro durante o reparo forçado do kernel: {e}")
+        return False
+
 def purge_old_kernels(keep_n: int = 2) -> None:
     """
-    Remove kernels antigos (pacotes e artefatos em /boot), preservando:
-    - o kernel em execução (uname -r)
-    - os 'keep_n' mais recentes encontrados em /usr/lib/modules
-
-    Evita mexer no meta-pacote linux-image-amd64 (mas pode ficar 'unconfigured' até finalizar).
+    (VERSÃO CORRIGIDA E ROBUSTA) Remove kernels antigos (pacotes e artefatos),
+    baseando-se apenas nos pacotes REALMENTE instalados para evitar erros.
+    Preserva o kernel em execução e os 'keep_n' mais recentes.
     """
-    import os, subprocess, glob, shlex, tempfile
+    import os, subprocess, shlex
 
-    # versões conhecidas pelo sistema
+    print("\n[KERNEL CLEANUP] Iniciando limpeza de kernels antigos de forma segura...")
+    
     try:
-        mods = [os.path.basename(p) for p in glob.glob("/usr/lib/modules/*") if os.path.isdir(p)]
-    except Exception:
-        mods = []
+        # Comando para listar todos os pacotes de imagem de kernel instalados ('ii') e ordenar por versão
+        cmd_find_kernels = "dpkg-query -W -f='${Package}\\n' 'linux-image-[0-9]*' | grep -v -- '-unsigned' | sort -V"
+        installed_images = subprocess.check_output(cmd_find_kernels, shell=True, text=True).strip().splitlines()
 
-    if not mods:
-        return
+        if not installed_images:
+            print("[KERNEL CLEANUP] Nenhum pacote de kernel para limpar.")
+            return
 
-    # ordena por 'sort -V' para respeitar semântica de versão
-    try:
-        with tempfile.NamedTemporaryFile("w+", delete=False) as tf:
-            for v in mods:
-                tf.write(v + "\n")
-            tf.flush()
-            out = subprocess.check_output(f"sort -V {shlex.quote(tf.name)}", shell=True, text=True).splitlines()
-        versions = [v.strip() for v in out if v.strip()]
-    except Exception:
-        versions = sorted(mods)
+        # Pega a versão do kernel em execução para garantir que não seja removida
+        running_kernel_version = subprocess.check_output("uname -r", shell=True, text=True).strip()
+        running_kernel_pkg = f"linux-image-{running_kernel_version}"
 
-    # determina conjunto a manter
-    try:
-        running = subprocess.check_output("uname -r", shell=True, text=True).strip()
-    except Exception:
-        running = ""
+        # Define a lista de pacotes a manter: o em execução e os 'keep_n' mais recentes
+        to_keep = set([running_kernel_pkg] + installed_images[-keep_n:])
+        
+        # Gera a lista de pacotes de imagem a serem removidos
+        images_to_remove = [pkg for pkg in installed_images if pkg not in to_keep]
 
-    keep = set()
-    if running:
-        keep.add(running)
-    keep.update(versions[-keep_n:])  # os 'keep_n' mais novos
+        if not images_to_remove:
+            print(f"[KERNEL CLEANUP] Nenhum kernel antigo para remover. Mantendo: {', '.join(to_keep)}")
+            return
 
-    # versões para remover
-    to_remove = [v for v in versions if v not in keep]
+        print(f"[KERNEL CLEANUP] Kernels a serem mantidos: {', '.join(to_keep)}")
+        print(f"[KERNEL CLEANUP] Kernels a serem removidos: {', '.join(images_to_remove)}")
+        
+        # Constrói a lista final de pacotes para purga (imagens e seus headers correspondentes)
+        packages_to_purge = []
+        for image_pkg in images_to_remove:
+            packages_to_purge.append(image_pkg)
+            # Adiciona o pacote de headers correspondente
+            headers_pkg = image_pkg.replace("linux-image-", "linux-headers-")
+            packages_to_purge.append(headers_pkg)
 
-    for ver in to_remove:
-        pkg = f"linux-image-{ver}"
-        hdr = f"linux-headers-{ver}"
-        # tenta purgar pacotes
-        subprocess.run(f"apt-get -y purge {pkg} {hdr}", shell=True)
-        subprocess.run(f"dpkg -r --force-remove-reinstreq {pkg} {hdr} || true", shell=True)
-        subprocess.run(f"dpkg --purge --force-all {pkg} {hdr} || true", shell=True)
-        # remove artefatos de /boot dessa versão
-        for pat in (f"/boot/initrd.img-{ver}", f"/boot/vmlinuz-{ver}", f"/boot/System.map-{ver}", f"/boot/config-{ver}"):
-            try:
-                if os.path.exists(pat):
-                    print(f"[purge_old_kernels] removendo {pat}")
-                    os.remove(pat)
-            except Exception as e:
-                print(f"[purge_old_kernels] falha ao remover {pat}: {e}")
+        env = os.environ.copy()
+        env["DEBIAN_FRONTEND"] = "noninteractive"
+        env["LC_ALL"] = "C.UTF-8"
+        
+        # Executa a remoção de uma só vez. O 'apt' ignora de forma silenciosa os pacotes
+        # da lista que não estiverem instalados (como os headers que não existem).
+        purge_cmd = ["apt-get", "remove", "--purge", "-y"] + packages_to_purge
+        print(f"[KERNEL CLEANUP] Executando comando: {' '.join(purge_cmd)}")
+        subprocess.run(purge_cmd, env=env, check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-    # atualiza grub (não fatal)
-    try:
-        subprocess.run("update-grub || true", shell=True)
-    except Exception:
-        pass
+        print("[KERNEL CLEANUP] Limpeza de kernels antigos concluída.")
+        
+    except Exception as e:
+        print(f"[AVISO] Ocorreu um erro durante a limpeza de kernels: {e}")
 
 def repair_initramfs_issues(min_free_mb: int = 900) -> None:
     """
@@ -3614,104 +3789,442 @@ grub-pc grub-pc/install_devices_empty boolean false
     except Exception as e:
         print(f"[AVISO] Falha ao autodetectar disco do GRUB. A atualização pode falhar ou pedir prompts: {e}")
 
-# ============================================================================
+def quarantine_third_party_sources() -> dict:
+    """
+    Identifica e desabilita temporariamente todos os repositórios de terceiros.
+    Retorna um dicionário dos arquivos renomeados para futura reativação.
+    """
+    print("\n[QUARENTENA] Desabilitando repositórios de terceiros para garantir a atualização do sistema base...")
+    sources_dir = "/etc/apt/sources.list.d/"
+    disabled_map = {}
+    
+    if not os.path.isdir(sources_dir):
+        return disabled_map
+
+    official_domains = ["deb.debian.org", "security.debian.org", "dl.google.com"]
+
+    for filename in os.listdir(sources_dir):
+        if not filename.endswith(".list"):
+            continue
+        
+        filepath = os.path.join(sources_dir, filename)
+        is_third_party = False
+        try:
+            with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#"):
+                        continue
+                    # Verifica se algum domínio não oficial está na linha
+                    if not any(domain in line for domain in official_domains):
+                        print(f"[QUARENTENA] Repositório de terceiros detectado em '{filename}': {line}")
+                        is_third_party = True
+                        break
+            
+            if is_third_party:
+                disabled_path = filepath + ".disabled"
+                print(f"[QUARENTENA] Desabilitando '{filepath}' -> '{disabled_path}'")
+                shutil.move(filepath, disabled_path)
+                disabled_map[disabled_path] = filepath
+        
+        except Exception as e:
+            print(f"[AVISO] Não foi possível processar o arquivo de repositório '{filepath}': {e}")
+            
+    return disabled_map
+
+def preemptive_root_cleanup():
+    """
+    (VERSÃO MODIFICADA) Executa uma limpeza agressiva e segura da partição raiz para
+    liberar espaço antes de atualizações críticas. Foca em caches do sistema,
+    pacotes órfãos e logs, sem tocar em dados de usuários em /home.
+    """
+    print("\n[PREPARAÇÃO] Executando limpeza AGRESSIVA da partição raiz...")
+    env = os.environ.copy()
+    env["DEBIAN_FRONTEND"] = "noninteractive"
+    env["LC_ALL"] = "C.UTF-8"
+
+    commands = [
+        # 1. Limpa o cache de pacotes .deb. É o passo mais importante e seguro.
+        ("Limpando cache do APT", "apt-get clean"),
+        
+        # 2. Remove pacotes órfãos que não são mais necessários.
+        ("Removendo pacotes órfãos (autoremove)", "apt-get -y autoremove --purge"),
+        
+        # 3. Limpa logs do systemd-journald, que podem ocupar muito espaço.
+        # Reduz o tamanho total para no máximo 200MB.
+        ("Limpando logs do journald (para <= 200MB)", "journalctl --vacuum-size=200M"),
+        
+        # 4. Força a remoção de logs de texto antigos e rotacionados.
+        ("Removendo logs antigos de /var/log", 
+         "find /var/log -type f -name '*.[0-9]' -o -name '*.gz' -o -name '*.old' -delete"),
+         
+        # 5. Limpa o conteúdo do diretório /tmp de forma segura.
+        ("Limpando conteúdo de /tmp", "find /tmp -mindepth 1 -maxdepth 1 -exec rm -rf {} +")
+    ]
+    
+    for description, cmd in commands:
+        try:
+            print(f"[PREPARAÇÃO] {description}...")
+            # check=False para não abortar se um comando falhar (ex: journalctl não existe)
+            result = subprocess.run(
+                cmd, 
+                shell=True, 
+                env=env, 
+                check=False,
+                stdout=subprocess.DEVNULL, 
+                stderr=subprocess.PIPE,
+                timeout=300 # 5 minutos
+            )
+            if result.returncode != 0:
+                 print(f"[AVISO] Comando de limpeza finalizou com erro (código {result.returncode}): {cmd.split()[0]}")
+                 if result.stderr:
+                     print(f"    Detalhe: {result.stderr.decode('utf-8', 'replace').strip()}")
+
+        except subprocess.TimeoutExpired:
+            print(f"[AVISO] O comando de limpeza '{cmd.split()[0]}' excedeu o tempo limite.")
+        except Exception as e:
+            print(f"[AVISO] Erro inesperado ao executar limpeza ('{cmd.split()[0]}'): {e}")
+            
+    print("[PREPARAÇÃO] Limpeza agressiva da raiz concluída.")
+
+def quarantine_ocsinventory_agent():
+    """
+    Remove e bloqueia temporariamente o ocsinventory-agent para evitar prompts
+    interativos que travam a atualização.
+    """
+    print("\n[QUARENTENA] Removendo e bloqueando 'ocsinventory-agent' para evitar prompts...")
+    env = os.environ.copy()
+    env["DEBIAN_FRONTEND"] = "noninteractive"
+    env["LC_ALL"] = "C.UTF-8"
+    
+    # O --purge remove os arquivos de configuração que causam os prompts
+    remove_cmd = "apt-get -y remove --purge ocsinventory-agent"
+    # O 'hold' impede que o apt tente reinstalá-lo como uma dependência
+    hold_cmd = "apt-mark hold ocsinventory-agent"
+    
+    try:
+        # Usamos check=False porque o pacote pode não estar instalado, o que não é um erro
+        subprocess.run(remove_cmd, shell=True, env=env, check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.run(hold_cmd, shell=True, env=env, check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        print("[QUARENTENA] 'ocsinventory-agent' removido e bloqueado com sucesso.")
+    except Exception as e:
+        print(f"[AVISO] Falha ao colocar 'ocsinventory-agent' em quarentena: {e}")
+
+
+import os
+import traceback
+
+def update_pmjs_version(version_string: str):
+    """
+    Cria ou modifica o arquivo /etc/pmjs/ver com a versão especificada.
+    """
+    file_path = "/etc/pmjs/ver"
+    dir_path = os.path.dirname(file_path)
+    
+    print(f"\nAtualizando a versão do PMJS para '{version_string}' em {file_path}...")
+    
+    try:
+        # Garante que o diretório /etc/pmjs/ exista, criando-o se necessário
+        os.makedirs(dir_path, exist_ok=True)
+        
+        # Abre o arquivo em modo de escrita ('w').
+        # Isso cria o arquivo se ele não existir e apaga todo o conteúdo se já existir.
+        with open(file_path, 'w', encoding='utf-8') as f:
+            f.write(version_string.strip() + '\n')
+            
+        print(f"Sucesso: Arquivo {file_path} atualizado para '{version_string}'.")
+        return True
+    except PermissionError:
+        print(f"[ERRO] Permissão negada para escrever em {file_path}.")
+        print("Por favor, execute o script com privilégios de administrador (sudo).")
+        return False
+    except Exception as e:
+        print(f"[ERRO] Ocorreu um erro inesperado ao tentar escrever no arquivo: {e}")
+        return False
+
+def ensure_chrome_min_139() -> bool:
+    """
+    Verifica se o Google Chrome está instalado e com versão igual ou superior a 139.
+    Se a versão for inferior ou se o Chrome não estiver instalado, executa a atualização.
+    Retorna True se o Chrome estiver na versão correta ao final, False caso contrário.
+    """
+    print("\n=== Verificando a versão do Google Chrome (mínimo: 139) ===")
+    
+    # Define a versão alvo que queremos alcançar
+    target_version = (139, 0, 0)
+    
+    # Obtém a versão atualmente instalada
+    current_version = get_chrome_version_tuple()
+    
+    # Compara a versão atual com a versão alvo
+    # A função _is_at_least já existe no seu script e faz essa comparação
+    if _is_at_least(current_version, target_version):
+        print(f"[OK] Google Chrome já está na versão {current_version} (ou superior). Nenhuma ação necessária.")
+        return True
+    
+    # Se a verificação falhar, informa o motivo e inicia a atualização
+    if current_version == (0, 0, 0):
+        print("Google Chrome não encontrado. Iniciando instalação/atualização...")
+    else:
+        print(f"A versão atual do Google Chrome ({current_version}) está abaixo da mínima necessária (139).")
+        print("Iniciando processo de atualização...")
+
+    # Chama a função de instalação/atualização que já existe no seu script.
+    # O argumento 'reenable=True' garante que os repositórios do Google sejam
+    # reativados após a instalação.
+    success = install_chrome_stable_quick(reenable=True)
+    
+    if success:
+        # Após a instalação, verifica a versão novamente para confirmar o sucesso
+        final_version = get_chrome_version_tuple()
+        print(f"Atualização concluída. Nova versão instalada: {final_version}")
+        if _is_at_least(final_version, target_version):
+            return True
+        else:
+            print(f"[ERRO] A atualização foi executada, mas a versão final ({final_version}) ainda está abaixo de 139.")
+            return False
+    else:
+        print("[ERRO] A rotina 'install_chrome_stable_quick' falhou.")
+        return False
+
+# --- ADICIONADO ---
+# A nova função que você solicitou, integrada ao script.
+def reinstall_libreoffice():
+    """
+    Desinstala completamente o LibreOffice, remove as configurações do usuário
+    e o reinstala com os pacotes de idioma pt-BR.
+    """
+    print("\n=== Iniciando a reinstalação do LibreOffice ===")
+    
+    # Atualiza a GUI se ela estiver ativa
+    update_custom_gui("Reinstalando LibreOffice...")
+
+    # Definir o ambiente padrão para comandos, como em outras funções do script
+    env = os.environ.copy()
+    env["DEBIAN_FRONTEND"] = "noninteractive"
+    env["LC_ALL"] = "C.UTF-8"
+
+    try:
+        # 1. Espera por locks e remove/purga o LibreOffice
+        print("[LO] Aguardando locks do APT...")
+        if not wait_for_apt_lock(timeout=600):
+            print("[LO ERRO] Timeout aguardando lock do APT. Abortando remoção.")
+            return False
+        
+        print("[LO] Removendo pacotes 'libreoffice*'...")
+        update_custom_gui("Removendo LibreOffice (purge)...")
+        # Usar 'auto_respond_command' que já existe no script
+        if not auto_respond_command("apt remove --purge libreoffice* -y", env=env, timeout=1200):
+            print("[LO AVISO] Falha no 'apt remove --purge'. Tentando continuar.")
+
+        # 2. Autoremove
+        print("[LO] Executando autoremove...")
+        if not wait_for_apt_lock(timeout=600):
+             print("[LO ERRO] Timeout aguardando lock do APT. Abortando autoremove.")
+             return False
+        auto_respond_command("apt autoremove -y", env=env, timeout=600)
+
+        # 3. Remover a configuração do usuário
+        # Usamos _find_active_gui_session para encontrar o usuário logado
+        print("[LO] Removendo configurações de usuário...")
+        session_info = _find_active_gui_session()
+        if session_info and session_info.get("user"):
+            user = session_info["user"]
+            try:
+                # Usamos 'pwd' para obter o diretório home do usuário
+                home_dir = pwd.getpwnam(user).pw_dir
+                config_path = os.path.join(home_dir, ".config", "libreoffice")
+                
+                if os.path.exists(config_path):
+                    print(f"[LO] Encontrado e removendo: {config_path}")
+                    shutil.rmtree(config_path)
+                else:
+                    print(f"[LO] Configuração não encontrada para o usuário {user} (caminho: {config_path}).")
+            except Exception as e:
+                print(f"[LO AVISO] Falha ao tentar remover config para o usuário {user}: {e}")
+        else:
+            print("[LO AVISO] Não foi possível encontrar um usuário ativo. Pulando remoção de config.")
+
+        # 4. Instalar o LibreOffice e pacotes de idioma
+        print("[LO] Aguardando locks do APT para instalação...")
+        if not wait_for_apt_lock(timeout=600):
+            print("[LO ERRO] Timeout aguardando lock do APT. Abortando instalação.")
+            return False
+
+        print("[LO] Instalando LibreOffice e pacotes pt-BR...")
+        update_custom_gui("Instalando LibreOffice (pt-BR)...")
+        install_cmd = "apt install libreoffice libreoffice-l10n-pt-br libreoffice-help-pt-br -y"
+        if not auto_respond_command(install_cmd, env=env, timeout=1800):
+            print("[LO ERRO] Falha ao instalar o LibreOffice.")
+            return False
+
+        print("=== Reinstalação do LibreOffice concluída com sucesso! ===")
+        update_custom_gui("LibreOffice reinstalado.")
+        return True
+
+    except Exception as e:
+        print(f"[LO ERRO] Erro inesperado durante a reinstalação do LibreOffice: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+    
+
+import re # Certifique-se que 'import re' está no topo do seu script
+
+def run_apt_command_with_progress(command_list: list, env: dict, start_percent: float, end_percent: float) -> bool:
+    """
+    Executa um comando apt (upgrade/full-upgrade), captura seu progresso
+    e atualiza a GUI com a porcentagem geral do script.
+    """
+    print(f"\n[EXEC COM PROGRESSO] {' '.join(command_list)}")
+    update_custom_gui("Iniciando instalação/atualização de pacotes...")
+
+    last_overall_percent = start_percent
+
+    try:
+        process = subprocess.Popen(
+            command_list,
+            env=env,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT, # Redireciona stderr para stdout
+            text=True,
+            encoding='utf-8',
+            errors='replace',
+            bufsize=1 # Line buffered
+        )
+
+        # Regex para capturar a porcentagem do apt (ajustado para formatos comuns)
+        # Ex: "Progresso: [###    ] 25%" ou " 25%" no início da linha (dpkg?)
+        progress_regex = re.compile(r'(?:Progresso:\s*\[.*?\]|^\s*)(\d+)%')
+
+        current_apt_percent = 0
+        while True:
+            line = process.stdout.readline()
+            if not line:
+                break # Fim da saída
+
+            print(line, end='', flush=True) # Exibe a saída no console
+
+            match = progress_regex.search(line)
+            if match:
+                try:
+                    apt_percent = int(match.group(1))
+                    # Evita retroceder e garante que só atualiza se mudar
+                    if apt_percent > current_apt_percent:
+                         current_apt_percent = apt_percent
+                         # Calcula a porcentagem geral baseada no intervalo
+                         overall_percent = start_percent + (apt_percent / 100.0) * (end_percent - start_percent)
+                         # Envia apenas se for maior que a última enviada (evita spam)
+                         if overall_percent > last_overall_percent:
+                             update_custom_gui(f"!!PERCENT!!:{int(overall_percent)}")
+                             last_overall_percent = overall_percent
+                except (ValueError, IndexError):
+                    pass # Ignora linhas mal formatadas
+
+        return_code = process.wait()
+
+        if return_code == 0:
+            # Garante que a barra chegue ao fim do intervalo esperado
+            update_custom_gui(f"!!PERCENT!!:{int(end_percent)}")
+            print(f"--- [SUCESSO] Comando finalizado (código: {return_code}) ---")
+            return True
+        else:
+            # Em caso de erro, deixa a barra onde parou
+            update_custom_gui(f"!!PERCENT!!:{int(last_overall_percent)}")
+            print(f"--- [FALHA] Comando finalizou com erro (código: {return_code}) ---")
+            return False
+
+    except Exception as e:
+        print(f"ERRO CRÍTICO ao executar comando com progresso: {e}")
+        # Tenta atualizar a barra para onde parou antes do erro
+        update_custom_gui(f"!!PERCENT!!:{int(last_overall_percent)}")
+        return False
+# --- FIM DA ADIÇÃO ---
+
 
 def main():
-    """
-    Função principal que orquestra todo o processo de atualização do Debian.
-    """
-    print("=== Script de Atualização do Debian ===")
-
-    # 1. Inicia a interface gráfica para feedback ao usuário
-    ok_ui = start_upgrade_ui_zenity_progress()
-    if ok_ui:
-        zenity_progress_set(2, "Detectando versão do Debian…")
-
-    # ================================================================= #
-    # ADIÇÃO IMPORTANTE AQUI                                            #
-    # Pré-configura o GRUB antes de qualquer outra coisa para evitar erros. #
-    # ================================================================= #
-    preconfigure_grub_pc()
-
-    ret = 1  # Código de saída padrão (1 = erro, 0 = sucesso)
+    ok_ui = start_custom_gui()
     try:
-        # 2. Verifica a versão atual do sistema
+        print(f"Diretório de trabalho original: {os.getcwd()}")
+        os.chdir('/')
+        print(f"Diretório de trabalho alterado para: {os.getcwd()}")
+    except Exception as e:
+        print(f"[AVISO] Não foi possível alterar o diretório de trabalho para '/': {e}")
+
+    ret = 1
+    error_reason = ""
+    try:
+        # --- Envio de Porcentagens (Reajustado) ---
+        update_custom_gui("!!PERCENT!!:0") 
+        update_custom_gui("Verificando chaves de repositório...")
+        ensure_all_keys_are_valid()
+
+        update_custom_gui("Aplicando configurações de sistema...")
+        apply_keep_conffiles_policy()
+        preconfigure_grub_pc()
+        update_custom_gui("!!PERCENT!!:5") # Após pre-checks
+
+        update_custom_gui("Detectando versão do Debian...")
         debian_version = get_debian_version()
         if debian_version is None:
-            print("Não foi possível determinar a versão do Debian. Abortando.")
-            if ok_ui: end_upgrade_ui_zenity(success=False)
-            return 1
+            raise Exception("Não foi possível determinar a versão do Debian.")
 
-        # 3. Executa o upgrade do sistema operacional base
         ok_os_upgrade = False
-        if debian_version < 13:
-            print(f"Sistema em Debian {debian_version}. Iniciando processo de upgrade para a versão 13...")
-            if ok_ui:
-                zenity_progress_set(10, f"Atualizando de Debian {debian_version} -> 13. Isso pode levar muito tempo...")
-            
-            ok_os_upgrade = ensure_debian_stepwise_to_13()
-            if not ok_os_upgrade:
-                print("\n[ERRO FATAL] Falha ao atualizar o sistema para a base do Debian 13.")
+        # O progresso de 5% a 70% agora é gerenciado DENTRO das funções abaixo
+        if debian_version < 12:
+            ok_os_upgrade = ensure_debian_stepwise_to_12() 
         else:
-            print(f"Sistema em Debian {debian_version}. Executando atualização de pacotes...")
-            if ok_ui:
-                zenity_progress_set(10, f"Atualizando pacotes no Debian {debian_version}...")
-            
-            ok_os_upgrade = run_robust_upgrade()
+            ok_os_upgrade = run_robust_upgrade() 
 
         if not ok_os_upgrade:
-            print("\n[ERRO FATAL] A atualização do sistema operacional base falhou. Abortando.")
-            if ok_ui: end_upgrade_ui_zenity(success=False)
-            return 1
+            raise Exception("A atualização do sistema operacional base falhou.")
+        # Ao sair das funções acima, esperamos estar em 70%
 
-        print("\n✅ Upgrade do sistema operacional base concluído com sucesso.")
-
-        # 4. Executa tarefas pós-upgrade
-        print("\nIniciando tarefas pós-upgrade...")
-        if ok_ui:
-            zenity_progress_set(75, "Executando tarefas pós-upgrade...")
-
-        # ... (resto da sua função main continua igual) ...
-
-        if ok_ui: zenity_progress_set(78, "Higienizando listas de repositórios…")
+        update_custom_gui("Executando tarefas pós-upgrade (limpeza)...")
         clean_sources_list()
         clean_sources_list_d()
-        ensure_debian_archive_keyring()
+        update_custom_gui("!!PERCENT!!:75") # Após limpeza
 
-        if ok_ui: zenity_progress_set(82, "Garantindo Firefox ESR ≥ 128…")
-        ensure_firefox_esr_min_128()
+        update_custom_gui("Atualizando Firefox ESR...")
+        if not ensure_firefox_esr_min_128():
+            print("[AVISO] Falha ao garantir versão mínima do Firefox ESR.") 
+        update_custom_gui("!!PERCENT!!:80") # Após Firefox
 
-        if ok_ui: zenity_progress_set(88, "Instalando Google Chrome (stable)…")
-        install_chrome_stable_quick(reenable=False)
+        update_custom_gui("Verificando e atualizando Google Chrome...")
+        if not ensure_chrome_min_139():
+            print("[AVISO] Não foi possível garantir a versão mínima do Google Chrome.")
+        update_custom_gui("!!PERCENT!!:85") # Após Chrome
 
-        if ok_ui: zenity_progress_set(94, "Instalando Google Earth…")
-        install_google_earth_stable_quick(reenable=False)
+        update_custom_gui("Verificando e reinstalando LibreOffice...")
+        if not reinstall_libreoffice():
+            print("[AVISO] A reinstalação do LibreOffice falhou.")
+        update_custom_gui("!!PERCENT!!:90") # Após LibreOffice
 
-        if ok_ui: zenity_progress_set(98, "Ajustando widget Host/IP…")
+        update_custom_gui("Recriando widget de Host/IP...")
         create_hostip_widget_post_upgrade()
+        update_custom_gui("!!PERCENT!!:95") # Após Widget
 
-        print("\nProcesso de atualização totalmente concluído!")
-        ret = 0 
+        update_custom_gui("Finalizando e atualizando a versão local...")
+        if not update_pmjs_version("1.8"):
+            raise Exception("Não foi possível atualizar o arquivo de versão /etc/pmjs/ver.") 
+        update_custom_gui("!!PERCENT!!:100") # Fim
+
+        ret = 0  # Sucesso
 
     except Exception as e:
         import traceback
-        print("\n[ERRO INESPERADO] Uma exceção não tratada ocorreu no processo principal:")
+        print(f"\n[ERRO INESPERADO] {e}")
         traceback.print_exc()
-        ret = 1
+        error_reason = str(e) 
+        ret = 1 # Falha
 
     finally:
-        # 5. Finaliza a interface gráfica
-        if ok_ui:
-            if ret == 0:
-                zenity_progress_set(100, "Concluído com sucesso! É recomendado reiniciar o computador.")
-                end_upgrade_ui_zenity(success=True)
-            else:
-                zenity_progress_set(100, "Processo concluído com erros. Verifique os logs no terminal.")
-                end_upgrade_ui_zenity(success=False)
-        
+        # Passa a razão do erro para a função stop_custom_gui
+        stop_custom_gui(success=(ret == 0), reason=error_reason if ret != 0 else None) 
         print(f"\nScript finalizado com código de saída: {ret}")
         return ret
 
+    
 # ==== RODAPÉ ROBUSTO: garante execução e loga qualquer exceção ====
 def _debug_banner():
     import datetime, os, sys
@@ -3720,16 +4233,40 @@ def _debug_banner():
     print(f"Hora: {datetime.datetime.now().isoformat(sep=' ', timespec='seconds')}", flush=True)
 
 if __name__ == "__main__":
-    import sys, traceback
-    try:
-        _debug_banner()
-        rc = main()
-        print(f"=== Fim auto.py (rc={rc}) ===\n", flush=True)
-        sys.exit(0 if rc is None else rc)
-    except SystemExit as e:
-        print(f"[SystemExit] rc={e.code}", flush=True)
-        raise
-    except Exception:
-        print("\n[ERRO] Exceção não capturada:\n", flush=True)
-        traceback.print_exc()
-        sys.exit(1)
+    # Esta lógica permite que o mesmo script atue como o programa principal
+    # ou como a interface gráfica, dependendo do argumento.
+    if "--run-gui" in sys.argv:
+        try:
+            # --- MODIFICAÇÃO AQUI ---
+            # A GUI agora lê o caminho do fifo que foi passado como argumento.
+            fifo_path_index = sys.argv.index("--run-gui") + 1
+            if len(sys.argv) > fifo_path_index:
+                fifo_path = sys.argv[fifo_path_index]
+                run_gui_app(fifo_path)
+            else:
+                # Log de erro caso o argumento não seja encontrado
+                with open("/tmp/auto-upgrade-gui-error.log", "w") as f:
+                    f.write("GUI ERRO: O argumento com o caminho do FIFO não foi encontrado.\n")
+        except Exception as e:
+            # Log de erro para depuração da GUI
+            with open("/tmp/auto-upgrade-gui-error.log", "w") as f:
+                import traceback
+                f.write(f"Falha ao iniciar a GUI: {e}\n")
+                traceback.print_exc(file=f)
+        sys.exit(0)
+    else:
+        # Execução padrão do script de atualização
+        import traceback
+        try:
+            _debug_banner()
+            rc = main()
+            print(f"=== Fim auto.py (rc={rc}) ===\n", flush=True)
+            sys.exit(0 if rc is None else rc)
+        except SystemExit as e:
+            print(f"[SystemExit] rc={e.code}", flush=True)
+            raise
+        except Exception:
+            print("\n[ERRO] Exceção não capturada:\n", flush=True)
+            traceback.print_exc()
+            stop_custom_gui(success=False) # Garante que a GUI feche em caso de erro
+            sys.exit(1)
